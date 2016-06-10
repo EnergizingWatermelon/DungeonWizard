@@ -13,3 +13,41 @@
  *= require_tree .
  *= require_self
  */
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+img {
+    max-width: 100%;
+    height: auto;
+}
+body {
+    background-color: #fffdf1;
+    background-image: url("https://raw.githubusercontent.com/Yerasho/hello-world/master/blueRibbon.png");
+    background-size: 450px;
+    background-repeat: repeat-x;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    padding-top: 50px;
+    color: #76533d;
+    text-align: center;
+}
+
+p {
+    color: #ca352c;
+    font-family: "Times New Roman";
+    font-size: 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>
+    <img src="https://raw.githubusercontent.com/Yerasho/hello-world/master/logo.png"
+        alt="DungeonWizard" width="1000" height="300">
+</h1>
+
+</body>
+</html>
