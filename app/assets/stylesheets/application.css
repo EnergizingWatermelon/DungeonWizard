@@ -30,7 +30,8 @@ body {
 }
 
 h1 {
-    padding-top: 50px;
+    height: 150px;
+    padding: 25px;
     color: #76533d;
     text-align: center;
 }
