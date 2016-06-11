@@ -28,6 +28,27 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+table, th, td{
+    border-collapse: collapse;
+    padding: 10px;
+    border-bottom: 1px solid #663300;
+}
+table{
+    width: 100%;
+    text-align: left;
+
+}
+th {
+    vertical-align: bottom;
+    background-color: #485abf;
+    color: #dcd29f;
+    height: 31px;
+}
+td {
+    color: #cc0033;
+}
+tr:hover {background-color: #fff2cc}
+
 h1 {
     color: #663300;
     text-align: center;
@@ -44,6 +65,62 @@ p {
 
 <h1>Header</h1>
 <p>This is a paragraph.</p>
+<table>
+    <tr>
+        <th>
+            Creature
+        </th>
+        <th>
+            CR
+        </th>
+        <th>
+            Exp
+        </th>
+    </tr>
+    <tr>
+        <td>
+            Red Dragon
+        </td>
+        <td>
+            20
+        </td>
+        <td>
+            9001
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Black Dragon
+        </td>
+        <td>
+            20
+        </td>
+        <td>
+            9001
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Blue Dragon
+        </td>
+        <td>
+            20
+        </td>
+        <td>
+            9001
+        </td>
+    </tr>
+        <td>
+            Gold Dragon
+        </td>
+        <td>
+            20
+        </td>
+        <td>
+            9001
+        </td>
+    </tr>
+<table>
 
 </body>
 </html>
