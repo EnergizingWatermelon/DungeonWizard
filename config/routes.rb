@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :adventures
-  get 'adventures' => 'adventures#index'
-  root :to => redirect('/adventures')
+  resources :adventure_maps
+  get 'adventure_maps' => 'adventure_maps#index'
+  root :to => redirect('/adventure_maps')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

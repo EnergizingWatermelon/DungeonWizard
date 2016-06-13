@@ -1,6 +1,6 @@
 #Author: Shane McDermott
 #Created On: Jun 12, 2016
-class AdventureMap
+class MapGenerator
 
 	def initialize(height = 32, width = 24)
 		@height = height
