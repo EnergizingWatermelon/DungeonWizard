@@ -1,0 +1,18 @@
+-# This file is app/views/adventure_map/index.html.haml
+
+%h2 Dungeon
+%body
+  -generate_map
+%table
+  %tbody
+    - 32.times do |row|
+      %tr
+        - 24.times do |column|
+          %td
+            - case get_map_cell(row,column)
+            - when "##"
+              = image_tag("tiles/tileForest.png", size: "32x32")
+            - when ".."
+              = image_tag("tiles/tileUnplayable.png", size: "32x32")
+            - else
+              = image_tag("tiles/tilePlayable.png", size: "32x32")
