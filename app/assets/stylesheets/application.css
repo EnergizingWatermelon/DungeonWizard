@@ -20,7 +20,7 @@
 body {
     background-color: #fffdf1;
     background-image: url("https://raw.githubusercontent.com/EnergizingWatermelon/DungeonWizard/master/app/assets/images/logo.png"),
-                      url("https://raw.githubusercontent.com/EnergizingWatermelon/DungeonWizard/master/app/assets/images/blueRibbon.png");
+                      url("https://raw.githubusercontent.com/EnergizingWatermelon/DungeonWizard/master/app/assets/images/ribbon.png");
     background-size: 1000px, 450px;
     background-position: center top+45px, left top;
     background-repeat: no-repeat, repeat-x;
