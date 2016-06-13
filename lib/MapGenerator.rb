@@ -10,7 +10,7 @@ class MapGenerator
 		@height.times do |x|
 			@grid[x] = Array.new(@width);
 			@width.times do |y|
-				@grid[x][y] = '..';
+				@grid[x][y] = :wall;
 			end
 		end
 	end
@@ -24,7 +24,7 @@ class MapGenerator
 		if(x0 >= 0 && y0 >= 0 && x1 < @height && y1 < @width)
 			for x in (x0..x1) do
 				for y in (y0..y1) do
-					if(@grid[x][y] != '..')
+					if(@grid[x][y] != :wall)
 						return false;
 					end
 				end
@@ -34,7 +34,7 @@ class MapGenerator
 		return false;
 	end
 
-	def addRoom(x = 0, y = 0, rmHeight = rand(4..6), rmWidth = rand(4..6))
+	private def addRoom(x = 0, y = 0, rmHeight = rand(4..6), rmWidth = rand(4..6))
 		xBounds = x+rmHeight;
 		yBounds = y+rmWidth;
 		if(isSpaceAvailable(x,y,xBounds,yBounds))
@@ -65,14 +65,14 @@ class MapGenerator
 		end
 	end
 	
-	def addLinkedRoom(x,y,passageX, passageY)
+	private def addLinkedRoom(x,y,passageX, passageY)
 		if(addRoom(x,y))
 			addSection(passageX, passageY)
 		end
 	end
 
 	#Fills a square region
-	def addSection(xRange, yRange, type = '##')
+	private def addSection(xRange, yRange, type = :passage)
 		for rx in xRange do
 			for ry in yRange do
 				@grid[rx][ry]=type;
