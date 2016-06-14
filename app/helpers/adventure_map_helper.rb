@@ -1,0 +1,2 @@
+module AdventureMapHelper
+end

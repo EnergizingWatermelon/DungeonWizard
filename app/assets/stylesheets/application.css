@@ -38,6 +38,8 @@ table{
     text-align: left;
 
 }
+
+
 th {
     vertical-align: bottom;
     background-color: #485abf;
@@ -46,8 +48,27 @@ th {
 }
 td {
     color: #cc0033;
+
 }
-tr:hover {background-color: #fff2cc}
+
+tr:hover {background-color: #fff2cc;}
+
+.map, .mapBody, .mapRow, .mapCol{
+    text-align: center;
+    vertical-align: middle;
+    width: 0%;
+    border-bottom: 0px none;
+    border-collapse: collapse;
+    padding: 0px;
+}
+
+.mapCol{
+    width: 32px;
+    height: 32px;
+   
+}
+
+
 
 h1 {
     color: #663300;
