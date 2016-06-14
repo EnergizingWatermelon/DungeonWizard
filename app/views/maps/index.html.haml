@@ -8,7 +8,7 @@
       %tr{:class => "mapRow"}
         - 24.times do |column|
           %td{:class => "mapCol"}
-            - case get_map_cell(row,column)
+            - case @grid[row][column]
             - when :passage
               = image_tag("tiles/cells/tileDungeon.png", size: "32x32")
             - when :wall

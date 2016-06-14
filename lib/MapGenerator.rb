@@ -31,6 +31,7 @@ class MapGenerator
 
 	def createMap
 		addRoom
+		return @grid;
 	end
 
 	#TODO: Add Gap for Walls?
