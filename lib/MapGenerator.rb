@@ -1,12 +1,26 @@
 #Author: Shane McDermott
 #Created On: Jun 12, 2016
-class MapGenerator
 
+class Room
+	attr_accessor :x, :y, :width, :height
+	def initialize(x,y,width,height)
+		@x = x;
+		@y = y;
+		@width = width;
+		@height = height;
+	end
+end
+
+class MapGenerator
+	attr_reader :rooms
+	
 	def initialize(height = 32, width = 24)
 		@height = height
 		@width = width
 		@numberOfEncounters = 0;
 		@grid = Array.new(@height);
+		@rooms = Array.new(6);
+		
 		@height.times do |x|
 			@grid[x] = Array.new(@width);
 			@width.times do |y|
@@ -39,6 +53,7 @@ class MapGenerator
 		yBounds = y+rmWidth;
 		if(isSpaceAvailable(x,y,xBounds,yBounds))
 			addSection((x..xBounds), (y..yBounds), "%02d" % [@numberOfEncounters])
+			@rooms[@numberOfEncounters] = Room.new(x,y,rmWidth, rmHeight);
 			@numberOfEncounters += 1;
 			
 			#Add South Rooms

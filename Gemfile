@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 # Use Haml for templates
 gem 'haml'
 
+# Use Prawn for pdf generation
+gem 'prawn'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
