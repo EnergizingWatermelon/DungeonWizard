@@ -1,26 +1,20 @@
 #Author: Shane McDermott
 #Created On: Jun 12, 2016
 
-class Room
-	attr_accessor :x, :y, :width, :height
-	def initialize(x,y,width,height)
-		@x = x;
-		@y = y;
-		@width = width;
-		@height = height;
-	end
-end
-
+# Generates a map
 class MapGenerator
-	attr_reader :rooms
-	
+
+# Constructor
+#
+# ==== Attributes
+# * +height+ - height of the Map
+# * +width+ - width of the Map
 	def initialize(height = 32, width = 24)
 		@height = height
 		@width = width
 		@numberOfEncounters = 0;
 		@grid = Array.new(@height);
-		@rooms = Array.new(6);
-		
+
 		@height.times do |x|
 			@grid[x] = Array.new(@width);
 			@width.times do |y|
@@ -29,13 +23,16 @@ class MapGenerator
 		end
 	end
 
-	def createMap
+	# Generates a grid-based map composed of connected rooms
+	#
+	# * Returns a grid of rooms and passages
+	def createGrid
 		addRoom
 		return @grid;
 	end
 
 	#TODO: Add Gap for Walls?
-	def isSpaceAvailable(x0,y0,x1,y1)
+	private def isSpaceAvailable(x0,y0,x1,y1)
 		if(x0 >= 0 && y0 >= 0 && x1 < @height && y1 < @width)
 			for x in (x0..x1) do
 				for y in (y0..y1) do
@@ -49,12 +46,18 @@ class MapGenerator
 		return false;
 	end
 
+	# Recursively adds rooms when space is available
+	#
+	# ==== Attributes
+	# * +x+ - x coordinate
+	# * +y+ - y coordinate
+	# * +rmHeight+ -height of room
+	# * +rmWidth+ -width of room
 	private def addRoom(x = 0, y = 0, rmHeight = rand(4..6), rmWidth = rand(4..6))
 		xBounds = x+rmHeight;
 		yBounds = y+rmWidth;
 		if(isSpaceAvailable(x,y,xBounds,yBounds))
 			addSection((x..xBounds), (y..yBounds), "%02d" % [@numberOfEncounters])
-			@rooms[@numberOfEncounters] = Room.new(x,y,rmWidth, rmHeight);
 			@numberOfEncounters += 1;
 			
 			#Add South Rooms
@@ -96,18 +99,7 @@ class MapGenerator
 		end
 	end
 	
-	def getRow(row)
-		str = ""
-		@width.times do |y|
-			str << @grid[row][y]
-		end
-		return str;
-	end
-	
-	def getCell(row,col)
-		return @grid[row][col]
-	end
-	
+	#Returns string representation of grid
 	def to_s
 		str = ""
 		@height.times do |y|

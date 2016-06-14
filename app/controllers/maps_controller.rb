@@ -6,7 +6,7 @@ class MapsController < ApplicationController
     # (Currently) Generates a map
     def index
         generator = MapGenerator.new
-        @grid = generator.createMap;
+        @grid = generator.createGrid;
     end
     
 end

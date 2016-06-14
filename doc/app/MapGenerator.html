@@ -72,9 +72,7 @@
     
     <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-createMap">#createMap</a>
-    
-    <li ><a href="#method-i-isSpaceAvailable">#isSpaceAvailable</a>
+    <li ><a href="#method-i-createGrid">#createGrid</a>
     
   </ul>
 </div>
@@ -89,6 +87,8 @@
 
   <section class="description">
     
+<p>Generates a map</p>
+
   </section>
 
   
@@ -101,27 +101,6 @@
 
     
 
-    
-    <section class="attribute-method-details" class="method-section">
-      <header>
-        <h3>Attributes</h3>
-      </header>
-
-      
-      <div id="attribute-i-rooms" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">rooms</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-    </section>
     
 
     
@@ -144,20 +123,26 @@
 
         <div class="method-description">
           
-          
+          <p>Constructor</p>
+
+<h4 id="method-c-new-label-Attributes">Attributes<span><a href="#method-c-new-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>height</code> - height of the <a href="Map.html">Map</a></p>
+</li><li>
+<p><code>width</code> - width of the <a href="Map.html">Map</a></p>
+</li></ul>
           
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/MapGenerator.rb, line 17</span>
+            <pre><span class="ruby-comment"># File lib/MapGenerator.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">height</span> = <span class="ruby-value">32</span>, <span class="ruby-identifier">width</span> = <span class="ruby-value">24</span>)
         <span class="ruby-ivar">@height</span> = <span class="ruby-identifier">height</span>
         <span class="ruby-ivar">@width</span> = <span class="ruby-identifier">width</span>
         <span class="ruby-ivar">@numberOfEncounters</span> = <span class="ruby-value">0</span>;
         <span class="ruby-ivar">@grid</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@height</span>);
-        <span class="ruby-ivar">@rooms</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">6</span>);
-        
+
         <span class="ruby-ivar">@height</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
                 <span class="ruby-ivar">@grid</span>[<span class="ruby-identifier">x</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@width</span>);
                 <span class="ruby-ivar">@width</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">y</span><span class="ruby-operator">|</span>
@@ -183,10 +168,10 @@
        </header>
 
     
-      <div id="method-i-createMap" class="method-detail ">
+      <div id="method-i-createGrid" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">createMap</span><span
+          <span class="method-name">createGrid</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -196,58 +181,19 @@
 
         <div class="method-description">
           
-          
+          <p>Generates a grid-based map composed of connected rooms</p>
+<ul><li>
+<p>Returns a grid of rooms and passages</p>
+</li></ul>
           
           
 
           
-          <div class="method-source-code" id="createMap-source">
-            <pre><span class="ruby-comment"># File lib/MapGenerator.rb, line 32</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">createMap</span>
+          <div class="method-source-code" id="createGrid-source">
+            <pre><span class="ruby-comment"># File lib/MapGenerator.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">createGrid</span>
         <span class="ruby-identifier">addRoom</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-isSpaceAvailable" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">isSpaceAvailable</span><span
-            class="method-args">(x0,y0,x1,y1)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>TODO: Add Gap for Walls?</p>
-          
-          
-
-          
-          <div class="method-source-code" id="isSpaceAvailable-source">
-            <pre><span class="ruby-comment"># File lib/MapGenerator.rb, line 37</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">isSpaceAvailable</span>(<span class="ruby-identifier">x0</span>,<span class="ruby-identifier">y0</span>,<span class="ruby-identifier">x1</span>,<span class="ruby-identifier">y1</span>)
-        <span class="ruby-keyword">if</span>(<span class="ruby-identifier">x0</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">y0</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x1</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@height</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">y1</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@width</span>)
-                <span class="ruby-keyword">for</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">x0</span><span class="ruby-operator">..</span><span class="ruby-identifier">x1</span>) <span class="ruby-keyword">do</span>
-                        <span class="ruby-keyword">for</span> <span class="ruby-identifier">y</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">y0</span><span class="ruby-operator">..</span><span class="ruby-identifier">y1</span>) <span class="ruby-keyword">do</span>
-                                <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@grid</span>[<span class="ruby-identifier">x</span>][<span class="ruby-identifier">y</span>] <span class="ruby-operator">!=</span> <span class="ruby-value">:wall</span>)
-                                        <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
-                                <span class="ruby-keyword">end</span>
-                        <span class="ruby-keyword">end</span>
-                <span class="ruby-keyword">end</span>
-                <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>;
-        <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+        <span class="ruby-keyword">return</span> <span class="ruby-ivar">@grid</span>;
 <span class="ruby-keyword">end</span></pre>
           </div>
           

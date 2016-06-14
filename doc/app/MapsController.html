@@ -70,8 +70,6 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-get_map_cell">#get_map_cell</a>
-    
     <li ><a href="#method-i-index">#index</a>
     
   </ul>
@@ -110,46 +108,6 @@
        </header>
 
     
-      <div id="method-i-get_map_cell" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_map_cell</span><span
-            class="method-args">(row,col)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Reads a cell from generated map</p>
-
-<h4 id="method-i-get_map_cell-label-Attributes">Attributes<span><a href="#method-i-get_map_cell-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
-<ul><li>
-<p><code>row</code> - the row of the cell within the map to read.</p>
-</li><li>
-<p><code>col</code> - the column of the cell within the map to read.</p>
-</li></ul>
-          
-          
-
-          
-          <div class="method-source-code" id="get_map_cell-source">
-            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_map_cell</span>(<span class="ruby-identifier">row</span>,<span class="ruby-identifier">col</span>)
-    <span class="ruby-ivar">@map</span>.<span class="ruby-identifier">getCell</span>(<span class="ruby-identifier">row</span>,<span class="ruby-identifier">col</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-i-index" class="method-detail ">
         
         <div class="method-heading">
@@ -169,10 +127,10 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-    <span class="ruby-ivar">@map</span> = <span class="ruby-constant">MapGenerator</span>.<span class="ruby-identifier">new</span>
-    <span class="ruby-ivar">@map</span>.<span class="ruby-identifier">createMap</span>
+    <span class="ruby-identifier">generator</span> = <span class="ruby-constant">MapGenerator</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@grid</span> = <span class="ruby-identifier">generator</span>.<span class="ruby-identifier">createGrid</span>;
 <span class="ruby-keyword">end</span></pre>
           </div>
           
