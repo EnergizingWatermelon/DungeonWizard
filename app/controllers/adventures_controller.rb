@@ -1,3 +1,5 @@
+require 'MapGenerator'
+
 # Controller class for Adventures
 class AdventuresController < ApplicationController
     
