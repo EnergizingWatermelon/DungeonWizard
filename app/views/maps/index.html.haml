@@ -13,5 +13,7 @@
               = image_tag("tiles/cells/tileDungeon.png", size: "32x32")
             - when :wall
               = image_tag("tiles/cells/tileUnplayable.png", size: "32x32")
-            - else
+            - when :room
               = image_tag("tiles/cells/tilePlayable.png", size: "32x32")
+            - else
+              = image_tag("tiles/cells/tileUnplayable.png", size: "32x32")
