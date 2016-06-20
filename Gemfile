@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+# bootstrap
+gem 'therubyracer'
+
 # Use Haml for templates
 gem 'haml'
 
