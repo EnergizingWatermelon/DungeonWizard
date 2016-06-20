@@ -1,3 +1,8 @@
 # Controller class for Adventures
-class AdventureController < ApplicationController
+class AdventuresController < ApplicationController
+    
+    def index
+        generator = MapGenerator.new
+        @grid = generator.createGrid
+    end
 end
