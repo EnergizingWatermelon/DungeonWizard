@@ -85,9 +85,38 @@ class MapGenerator
 							(yBounds + 1...nextY)
 				)
 
-			return true
+			return true;
 		else
-			return false
+			#try smaller room
+				rmHeight = rand(3..4);
+				rmWidth = rand(3..4);
+				xBounds = x+rmHeight;
+				yBounds = y+rmWidth;
+			if(isSpaceAvailable(x,y,xBounds,yBounds))
+				addSection((x..xBounds), (y..yBounds), :room)
+				@numberOfEncounters += 1
+			
+				#Add South Rooms
+				nextX = xBounds + rand(2..4)
+				nextY = y + rand(2..4)
+				addLinkedRoom(	nextX, 
+							y, 
+							(xBounds + 1...nextX),
+							(nextY..nextY)
+						  )
+						  
+				#Add East Rooms
+				nextX = x + rand(2..4)
+				nextY = yBounds + rand(2..4)
+				addLinkedRoom(	x,
+							nextY,
+							(nextX..nextX),
+							(yBounds + 1...nextY)
+						)
+				return true;
+			else
+				return false;
+			end
 		end
 	end
 	
