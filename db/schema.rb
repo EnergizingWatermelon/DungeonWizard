@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613192530) do
+ActiveRecord::Schema.define(version: 20160620001219) do
 
   create_table "adventure_maps", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20160613192530) do
   create_table "adventures", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.string "xp"
+    t.string "cr"
+    t.text   "climate"
+    t.text   "terrain"
   end
 
   create_table "encounters", force: :cascade do |t|

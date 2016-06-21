@@ -1,3 +1,9 @@
+require 'MapGenerator'
+
 # Controller class for Adventures
-class AdventureController < ApplicationController
+class AdventuresController < ApplicationController
+    
+    def index
+        @grid = MapGenerator.generateDungeon
+    end
 end

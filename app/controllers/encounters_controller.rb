@@ -1,3 +1,6 @@
-#Controller for Encounter
-class EncounterController < ApplicationController
+class EncountersController < ApplicationController
+    
+    def index
+    end
+    
 end

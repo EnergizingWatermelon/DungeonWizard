@@ -1,4 +1,4 @@
--# This file is app/views/maps/index.html.haml
+-# This file is app/views/maps/adventures.html.haml
 %html
   %head
     = stylesheet_link_tag 'bootstrap', 'media' => 'all', 'data-turbolinks-track' => true
@@ -11,6 +11,15 @@
     %div{:class => "row"}
       %div{:class => "col-md-6"}
         %div{:class => "form-group"}
+          %label{:for => "PlayerCount"}Player Count
+          %input{:type => "number", :class => "form-control", :id => "PlayerCount",
+                 :name => "PlayerCount", :placeholder => "4", :min => "1"}
+        %div{:class => "form-group"}
+          %label{:for => "PlayerLevel"}Player Level
+          %input{:type => "number", :class => "form-control", :id => "PlayerLevel",
+                 :name => "PlayerLevel", :placeholder => "1", :min => "1"}
+      %div{:class => "col-md-6"}
+        %div{:class => "form-group"}
           %label{:for => "Climate"}Climate
           %input{:type => "text", :class => "form-control", :id => "Climate",
                  :name => "Climate", :placeholder => "Temperate"}
@@ -20,9 +29,9 @@
                  :name => "Terrain", :placeholder => "Forest"}
     %div{:class => "row"}
       %div{:class => "col-md-12"}
-        %button{:type => "button", :class => "btn btn-success pull-right"}= link_to 'Generate!', maps_path
+        %button{:type => "button", :class => "btn btn-success pull-right"}= link_to 'Generate!', adventures_path
         %button{:type => "button", :class => "btn btn-default pull-right"} Reset
-        %button{:type => "button", :class => "btn btn-default pull-right"}= link_to 'Adventures', adventures_path
+        %button{:type => "button", :class => "btn btn-default pull-right"}= link_to 'Maps', maps_path
     %div{:class => "row"}
       %div{:class => "col-md-12"}
         %h2 Dungeon
