@@ -5,8 +5,11 @@ class MapsController < ApplicationController
     
     # (Currently) Generates a map
     def index
-        generator = MapGenerator.new
-        @grid = generator.createGrid;
+        @grid = MapGenerator.generateDungeon
+    end
+    
+    def cave
+        @grid = MapGenerator.generateCave
     end
     
 end
