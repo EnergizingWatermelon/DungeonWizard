@@ -61,37 +61,12 @@ class MapGenerator
 	# * +rmHeight+ -height of room
 	# * +rmWidth+ -width of room
 	private def addRoom(x = 0, y = 0, rmHeight = rand(4..6), rmWidth = rand(4..6))
-		xBounds = x+rmHeight
-		yBounds = y+rmWidth
-		if(isSpaceAvailable(x,y,xBounds,yBounds))
-			addSection((x..xBounds), (y..yBounds), :room)
-			@numberOfEncounters += 1
+		maxAttempts = 2
+		
+		maxAttempts.times do 
 			
-			#Add South Rooms
-			nextX = xBounds + rand(2..4)
-			nextY = y + rand(2..4)
-			addLinkedRoom(	nextX, 
-							y, 
-							(xBounds + 1...nextX),
-							(nextY..nextY)
-						  )
-						  
-			#Add East Rooms
-			nextX = x + rand(2..4)
-			nextY = yBounds + rand(2..4)
-			addLinkedRoom(	x,
-							nextY,
-							(nextX..nextX),
-							(yBounds + 1...nextY)
-				)
-
-			return true;
-		else
-			#try smaller room
-				rmHeight = rand(3..4);
-				rmWidth = rand(3..4);
-				xBounds = x+rmHeight;
-				yBounds = y+rmWidth;
+			xBounds = x+rmHeight
+			yBounds = y+rmWidth
 			if(isSpaceAvailable(x,y,xBounds,yBounds))
 				addSection((x..xBounds), (y..yBounds), :room)
 				@numberOfEncounters += 1
@@ -100,24 +75,27 @@ class MapGenerator
 				nextX = xBounds + rand(2..4)
 				nextY = y + rand(2..4)
 				addLinkedRoom(	nextX, 
-							y, 
-							(xBounds + 1...nextX),
-							(nextY..nextY)
-						  )
+								y, 
+								(xBounds + 1...nextX),
+								(nextY..nextY)
+				)
 						  
 				#Add East Rooms
 				nextX = x + rand(2..4)
 				nextY = yBounds + rand(2..4)
 				addLinkedRoom(	x,
-							nextY,
-							(nextX..nextX),
-							(yBounds + 1...nextY)
-						)
+								nextY,
+								(nextX..nextX),
+								(yBounds + 1...nextY)
+				)
 				return true;
 			else
-				return false;
+			#try smaller room
+				rmHeight = rand(rmHeight/2...rmHeight);
+				rmWidth = rand(rmWidth/2...rmWidth);
 			end
 		end
+		return false;
 	end
 	
 	private def addLinkedRoom(x,y,passageX, passageY)
