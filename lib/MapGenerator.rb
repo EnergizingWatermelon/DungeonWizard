@@ -34,20 +34,22 @@ class MapGenerator
 					end
 					#This should be checking for walls to be added across from 
 					#the current room but it is not working
-					if(@grid[x][y+1] != :wall)
+					if(@grid[x][y-1] != :wall or @grid[x][y+1] != :wall)
 						return false
 					end
 					#This seems to be working for checking if a room is above
 					#the current room being added
 					begin
-						if(@grid[x+1][y] != :wall)
-							return false
+						if(@grid[x-1][y] != :wall or @grid[x+1][y] != :wall)
+						return false
 						end
 					rescue Exception
 						return false
 					end
+					
 				end
 			end
+
 			return true
 		end
 		return false
@@ -61,10 +63,6 @@ class MapGenerator
 	# * +rmHeight+ -height of room
 	# * +rmWidth+ -width of room
 	private def addRoom(x = 0, y = 0, rmHeight = rand(4..6), rmWidth = rand(4..6))
-		maxAttempts = 2
-		
-		maxAttempts.times do 
-			
 			xBounds = x+rmHeight
 			yBounds = y+rmWidth
 			if(isSpaceAvailable(x,y,xBounds,yBounds))
@@ -89,11 +87,6 @@ class MapGenerator
 								(yBounds + 1...nextY)
 				)
 				return true;
-			else
-			#try smaller room
-				rmHeight = rand(rmHeight/2...rmHeight);
-				rmWidth = rand(rmWidth/2...rmWidth);
-			end
 		end
 		return false;
 	end
