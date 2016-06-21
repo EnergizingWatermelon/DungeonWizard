@@ -4,7 +4,6 @@ require 'MapGenerator'
 class AdventuresController < ApplicationController
     
     def index
-        generator = MapGenerator.new
-        @grid = generator.createGrid
+        @grid = MapGenerator.generateDungeon
     end
 end

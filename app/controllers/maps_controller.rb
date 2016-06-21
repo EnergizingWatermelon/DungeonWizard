@@ -1,17 +1,15 @@
 require 'MapGenerator'
-require 'CaveGenerator'
 
 # MapsController: Controller for Maps
 class MapsController < ApplicationController
     
     # (Currently) Generates a map
     def index
-        generator = MapGenerator.new
-        @grid = generator.createGrid
+        @grid = MapGenerator.generateDungeon
     end
     
     def cave
-        @grid = CaveGenerator.generate
+        @grid = MapGenerator.generateCave
     end
     
 end
