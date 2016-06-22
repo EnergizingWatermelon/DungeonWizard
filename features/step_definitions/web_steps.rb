@@ -126,6 +126,7 @@ Then(/^I should see a Map$/) do
 	page.should have_table('//*' , :class => "map")
   else
     assert page.has_table('//*' , :class => "map")
+  end
 end
 
 #To do: create a way to determine an encounter is on the page
