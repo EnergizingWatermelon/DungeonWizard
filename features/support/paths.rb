@@ -14,7 +14,15 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      '/'
+		'/'
+    when /^the DungeonWizard home page/
+		'/maps'
+	when /^the Map Generator page/
+		'/maps'
+	when /^the Encounter Generator page/
+		'/encounters'
+	when /^the Adventure Generator page/
+		'/adventures'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
