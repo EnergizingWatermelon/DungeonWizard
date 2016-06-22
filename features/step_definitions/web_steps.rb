@@ -122,8 +122,10 @@ end
 
 #To do: create a way to determine a map is on the page
 Then(/^I should see a Map$/) do
-#  if page.respond_to? :should
-#	page.should have
+  if page.respond_to? :should
+	page.should have_table('//*' , :class => "map")
+  else
+    assert page.has_table('//*' , :class => "map")
 end
 
 #To do: create a way to determine an encounter is on the page
