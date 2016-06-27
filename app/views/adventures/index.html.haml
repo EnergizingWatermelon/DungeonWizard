@@ -3,11 +3,18 @@
   %head
     = stylesheet_link_tag 'bootstrap', 'media' => 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag 'bootstrap-theme', 'media' => 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'typeahead', 'media' => 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag 'application', 'media' => 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'jquery', 'data-turbolinks-track' => true
-    = javascript_include_tag 'bootstrap', 'data-turbolinks-track' => true
   %body
-  %div{:class => "container"}
+  %nav{:class => 'navbar navbar-inverse navbar-fixed-top'}
+    %div{:class => 'container-fluid'}
+      %div{:class => 'navbar-header'}
+        %button{:type => 'button', :class => 'btn btn-info navbar-btn', :disabled => 'disabled'}
+          Adventures
+        //=link_to 'Adventures', adventures_path
+        %button{:type => 'button', :class => 'btn btn-info navbar-btn'}
+          =link_to 'Maps', maps_path
+  %div{:class => "container", :id => "parmsContainer"}
     %div{:class => "row"}
       %div{:class => "col-md-6"}
         %div{:class => "form-group"}
@@ -21,17 +28,18 @@
       %div{:class => "col-md-6"}
         %div{:class => "form-group"}
           %label{:for => "Climate"}Climate
-          %input{:type => "text", :class => "form-control", :id => "Climate",
-                 :name => "Climate", :placeholder => "Temperate"}
+          %input{:type => "text", :class => "form-control typeahead", :id => "Climate",
+                 :name => "climate", :placeholder => "Temperate",
+                 'data-query' => "/characters", 'data-name' => "climate", 'data-parms' => "#parmsContainer"}
         %div{:class => "form-group"}
           %label{:for => "Terrain"}Terrain
-          %input{:type => "text", :class => "form-control", :id => "Terrain",
-                 :name => "Terrain", :placeholder => "Forest"}
+          %input{:type => "text", :class => "form-control typeahead", :id => "Terrain",
+                 :name => "terrain", :placeholder => "Forest",
+                 'data-query' => "/characters", 'data-name' => "terrain", 'data-parms' => "#parmsContainer"}
     %div{:class => "row"}
       %div{:class => "col-md-12"}
         %button{:type => "button", :class => "btn btn-success pull-right"}= link_to 'Generate!', adventures_path
         %button{:type => "button", :class => "btn btn-default pull-right"} Reset
-        %button{:type => "button", :class => "btn btn-default pull-right"}= link_to 'Maps', maps_path
     %div{:class => "row"}
       %div{:class => "col-md-12"}
         %h2 Dungeon

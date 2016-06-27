@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
+//= require typeahead.bundle
+//= require typeAheadModule
+//= require typeaheadinit
 //= require_tree .

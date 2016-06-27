@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20160620001219) do
     t.string "name"
     t.string "xp"
     t.string "cr"
-    t.text   "climate"
-    t.text   "terrain"
+    t.string "climate"
+    t.string "terrain"
   end
 
   create_table "encounters", force: :cascade do |t|
