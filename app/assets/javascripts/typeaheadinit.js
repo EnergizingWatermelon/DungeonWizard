@@ -1,5 +1,6 @@
 $(function(){
     
-    const DataAttrQuery = "query"
+	var typeaheads = $('.typeahead');
+	typeAheadModule.init(typeaheads);
     
-})();
+});

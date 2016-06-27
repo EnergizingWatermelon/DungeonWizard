@@ -9,6 +9,14 @@
     = javascript_include_tag 'bootstrap', 'data-turbolinks-track' => true
     = javascript_include_tag 'typeahead.bundle', 'data-turbolinks-track' => true
   %body
+  %nav{:class => 'navbar navbar-inverse navbar-fixed-top'}
+    %div{:class => 'container-fluid'}
+      %div{:class => 'navbar-header'}
+        %button{:type => 'button', :class => 'btn btn-info navbar-btn'}
+          =link_to 'Adventures', adventures_path
+        %button{:type => 'button', :class => 'btn btn-info navbar-btn', :disabled => 'disabled'}
+          Maps
+        //=link_to 'Maps', maps_path
   %div{:class => "container"}
     %div{:class => "row"}
       %div{:class => "col-md-6"}
@@ -24,7 +32,6 @@
       %div{:class => "col-md-12"}
         %button{:type => "button", :class => "btn btn-success pull-right"}= link_to 'Generate!', maps_path
         %button{:type => "button", :class => "btn btn-default pull-right"} Reset
-        %button{:type => "button", :class => "btn btn-default pull-right"}= link_to 'Adventures', adventures_path
     %div{:class => "row"}
       %div{:class => "col-md-12"}
         %h2 Dungeon
