@@ -110,7 +110,8 @@ var typeAheadModule = (function() {
 				async: true,//does do a remote query
 				limit: 20,// only show top 20 results regardless of getting more
 				display: function(item) { // what to display from the item; assumes a particular structure, but can just be a list of strings (so return item;)
-					return item.name;//item = { id: ##, name: "string" }
+					console.log('Display return: ' + JSON.stringify(item));
+					return item[name];//item = { id: ##, name: "string" }
 				}
 			});
 			
@@ -119,7 +120,7 @@ var typeAheadModule = (function() {
 			// fields without having to do too much horsing around
 			that.bind('typeahead:selected', function(event, suggestion) {
 				var d = data();
-				d[name] = suggestion.name;
+				d[name] = suggestion[name];
 				data(d);
 				console.log('Suggestion for ' + name + ': ' + JSON.stringify(suggestion));
 			});
