@@ -11,5 +11,7 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( bootstrap.css )
 Rails.application.config.assets.precompile += %w( bootstrap-theme.css )
+Rails.application.config.assets.precompile += %w( typeahead.css )
 Rails.application.config.assets.precompile += %w( bootstrap.js )
 Rails.application.config.assets.precompile += %w( jquery.js )
+Rails.application.config.assets.precompile += %w( typeahead.bundle.js )
