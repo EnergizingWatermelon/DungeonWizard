@@ -4,4 +4,4 @@ Scenario: Navigate to Instructions page
 	Given I am on the DungeonWizard home page
 	When I follow "Instructions"
 	Then I should be on the Instructions page
-	And I should see text
+	And I should see "Instructions"
