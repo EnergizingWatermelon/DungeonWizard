@@ -9,11 +9,8 @@
   %nav{:class => 'navbar navbar-inverse navbar-fixed-top'}
     %div{:class => 'container-fluid'}
       %div{:class => 'navbar-header'}
-        %button{:type => 'button', :class => 'btn btn-info navbar-btn', :disabled => 'disabled'}
-          Adventures
-        //=link_to 'Adventures', adventures_path
-        %button{:type => 'button', :class => 'btn btn-info navbar-btn'}
-          =link_to 'Maps', maps_path
+        =link_to 'Adventures', adventures_path, {:class => 'btn btn-info navbar-btn', :disabled => 'disabled'}
+        =link_to 'Maps', maps_path, {:class => 'btn btn-info navbar-btn'}
   %div{:class => "container", :id => "parmsContainer"}
     %div{:class => "row"}
       %div{:class => "col-md-6"}
