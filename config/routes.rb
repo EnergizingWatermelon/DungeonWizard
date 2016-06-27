@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   
   resources :encounters
   get 'encounters' => 'encounters#index'
+  
+  resources :characters
+  get 'characters' => 'characters#index'
 
   root :to => redirect('/adventures')
   
