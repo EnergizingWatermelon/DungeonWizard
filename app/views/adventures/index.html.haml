@@ -1,10 +1,10 @@
 -# This file is app/views/maps/adventures.html.haml
 %html
   %head
-    = stylesheet_link_tag 'bootstrap', 'media' => 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag 'bootstrap-theme', 'media' => 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag 'typeahead', 'media' => 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag 'application', 'media' => 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'bootstrap', 'media' => 'all'
+    = stylesheet_link_tag 'bootstrap-theme', 'media' => 'all'
+    = stylesheet_link_tag 'typeahead', 'media' => 'all'
+    = stylesheet_link_tag 'application', 'media' => 'all'
   %body
   %nav{:class => 'navbar navbar-inverse navbar-fixed-top'}
     %div{:class => 'container-fluid'}
@@ -37,7 +37,7 @@
       %div{:class => "row"}
         %div{:class => "col-md-12"}
           = submit_tag 'Generate!', {:class => "btn btn-success pull-right"}
-          %button{:type => "button", :class => "btn btn-default pull-right"} Reset
+          = link_to 'Reset', adventures_path, {:class => "btn btn-default pull-right"}
     %div{:class => "row"}
       %div{:class => "col-md-12"}
         %h2 Dungeon
