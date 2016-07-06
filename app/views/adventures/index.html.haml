@@ -12,31 +12,32 @@
         =link_to 'Adventures', adventures_path, {:class => 'btn btn-info navbar-btn', :disabled => 'disabled'}
         =link_to 'Maps', maps_path, {:class => 'btn btn-info navbar-btn'}
   %div{:class => "container", :id => "parmsContainer"}
-    %div{:class => "row"}
-      %div{:class => "col-md-6"}
-        %div{:class => "form-group"}
-          %label{:for => "PlayerCount"}Player Count
-          %input{:type => "number", :class => "form-control", :id => "PlayerCount",
-                 :name => "PlayerCount", :placeholder => "4", :min => "1"}
-        %div{:class => "form-group"}
-          %label{:for => "PlayerLevel"}Player Level
-          %input{:type => "number", :class => "form-control", :id => "PlayerLevel",
-                 :name => "PlayerLevel", :placeholder => "1", :min => "1"}
-      %div{:class => "col-md-6"}
-        %div{:class => "form-group"}
-          %label{:for => "Climate"}Climate
-          %input{:type => "text", :class => "form-control typeahead", :id => "Climate",
-                 :name => "climate", :placeholder => "Temperate",
-                 'data-query' => "/characters", 'data-name' => "climate", 'data-parms' => "#parmsContainer"}
-        %div{:class => "form-group"}
-          %label{:for => "Terrain"}Terrain
-          %input{:type => "text", :class => "form-control typeahead", :id => "Terrain",
-                 :name => "terrain", :placeholder => "Forest",
-                 'data-query' => "/characters", 'data-name' => "terrain", 'data-parms' => "#parmsContainer"}
-    %div{:class => "row"}
-      %div{:class => "col-md-12"}
-        %button{:type => "button", :class => "btn btn-success pull-right"}= link_to 'Generate!', adventures_path
-        %button{:type => "button", :class => "btn btn-default pull-right"} Reset
+    = form_tag adventures_path, :method => :get do
+      %div{:class => "row"}
+        %div{:class => "col-md-6"}
+          %div{:class => "form-group"}
+            %label{:for => "PlayerCount"}Player Count
+            %input{:type => "number", :class => "form-control", :id => "PlayerCount",
+                   :name => "PlayerCount", :placeholder => "4", :min => "1"}
+          %div{:class => "form-group"}
+            %label{:for => "PlayerLevel"}Player Level
+            %input{:type => "number", :class => "form-control", :id => "PlayerLevel",
+                   :name => "PlayerLevel", :placeholder => "1", :min => "1"}
+        %div{:class => "col-md-6"}
+          %div{:class => "form-group"}
+            = label :character, :climate, 'Climate'
+            = text_field :character, :climate, {:class => "form-control typeahead", :id => "Climate",
+                   :name => "climate", :placeholder => "Temperate",
+                   'data-query' => "/characters", 'data-name' => "climate", 'data-parms' => "#parmsContainer"}
+          %div{:class => "form-group"}
+            = label :character, :terrain, 'Terrain'
+            = text_field :character, :terrain, {:class => "form-control typeahead", :id => "Terrain",
+                   :name => "terrain", :placeholder => "Forest",
+                   'data-query' => "/characters", 'data-name' => "terrain", 'data-parms' => "#parmsContainer"}
+      %div{:class => "row"}
+        %div{:class => "col-md-12"}
+          = submit_tag 'Generate!', {:class => "btn btn-success pull-right"}
+          %button{:type => "button", :class => "btn btn-default pull-right"} Reset
     %div{:class => "row"}
       %div{:class => "col-md-12"}
         %h2 Dungeon
