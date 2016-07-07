@@ -1,12 +1,23 @@
 #Author: Shane McDermott
 #Created On: Jun 21, 2016 MapGenerator
 
-#Used to generate maps
+# Used to generate maps
 module MapGenerator
 
+	def MapGenerator.generateMap(seed, terrain)
+		srand(seed)
+		case terrain
+			when 'Cave'
+				return MapGenerator.generateCave(32,24)
+			when 'Dungeon'
+				return MapGenerator.generateDungeon(32,24)
+			else
+				return MapGenerator.generateNatural(32,24)
+		end
+	end
 
-#Generates more "natural" feeling Maps
-	def MapGenerator.generateCave(height = 32, width = 24)
+	# Generates caves by carving out passages
+	def MapGenerator.generateCave(height, width)
 		grid = Array.new(height){Array.new(width, :wall)}
 		reps = 1000
 		#Informs the controller how to adjust x and y, given a direction
@@ -46,10 +57,18 @@ module MapGenerator
 		return grid
 	end
 
+	# Original dungeon algorithm - generates branching rooms
 	require 'DungeonGenerator'
-	def MapGenerator.generateDungeon(height = 32, width = 24)
+	def MapGenerator.generateDungeon(height, width)
 		generator = DungeonGenerator.new(height,width)
 		return generator.createGrid
 	end
 
+	# Creates natural spaces with cellular automata rules
+	require 'CellularMap'
+	def MapGenerator.generateNatural(height, width)
+		map = CellularMap.new(height,width)
+		map.generateCave
+		return map.grid
+	end
 end

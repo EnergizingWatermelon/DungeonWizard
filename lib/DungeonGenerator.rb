@@ -86,11 +86,12 @@ class DungeonGenerator
 								(nextX..nextX),
 								(yBounds + 1...nextY)
 				)
-				return true;
+				return true
 		end
-		return false;
+		return false
 	end
 	
+	# Adds a room as well as a passage to connect them
 	private def addLinkedRoom(x,y,passageX, passageY)
 		if(addRoom(x,y))
 			addSection(passageX, passageY)
@@ -106,7 +107,7 @@ class DungeonGenerator
 		end
 	end
 	
-	#Returns string representation of grid
+	# Returns string representation of grid
 	def to_s
 		str = ""
 		@height.times do |y|

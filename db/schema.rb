@@ -13,12 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20160620001219) do
 
-  create_table "adventure_maps", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "adventures", force: :cascade do |t|
+    t.string   "title"
+    t.text     "plot"
+    t.integer  "party_size"
+    t.float    "cr"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,13 +26,23 @@ ActiveRecord::Schema.define(version: 20160620001219) do
     t.string "name"
     t.string "xp"
     t.string "cr"
-    t.string "climate"
-    t.string "terrain"
+    t.text   "climate"
+    t.text   "terrain"
   end
 
   create_table "encounters", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "maps", force: :cascade do |t|
+    t.string  "name"
+    t.integer "seed"
+    t.string  "climate"
+    t.string  "terrain"
+    t.integer "adventure_id"
+  end
+
+  add_index "maps", ["adventure_id"], name: "index_maps_on_adventure_id"
 
 end
