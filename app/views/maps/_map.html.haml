@@ -1,0 +1,17 @@
+- #This file is /app/views/maps/_map.html.haml
+%div{:class => "row"}
+  %div{:class => "col-md-12"}
+    %h2= map.name
+    %table{:class => "map"}
+      %tbody{:class => "mapBody"}
+        - 32.times do |row|
+          %tr{:class => "mapRow"}
+            - 24.times do |column|
+              %td{:class => "mapCol"}
+                - case @grid[row][column]
+                  - when :passage
+                    = image_tag("tiles/cells/tileDungeon.png", size: "32x32")
+                  - when :wall
+                    = image_tag("tiles/cells/tileUnplayable.png", size: "32x32")
+                  - else
+                    = image_tag("tiles/cells/tilePlayable.png", size: "32x32")

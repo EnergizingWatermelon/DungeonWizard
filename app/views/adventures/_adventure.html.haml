@@ -1,0 +1,11 @@
+-# This file is /app/views/adventures/_adventure.html.haml
+%ul#details
+  %li= @adventure.title
+  %li= @adventure.plot
+  %li= @adventure.party_size
+  %li= @adventure.cr
+  %li= @adventure.map.name
+  %li= @adventure.map.climate
+  %li= @adventure.map.terrain
+  %li= @adventure.map.seed
+=render @adventure.map
