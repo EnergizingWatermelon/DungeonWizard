@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620001219) do
+ActiveRecord::Schema.define(version: 20160708023924) do
+
+  create_table "abilities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "type"
+    t.text     "description"
+    t.integer  "character_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "abilities", ["character_id"], name: "index_abilities_on_character_id"
 
   create_table "adventures", force: :cascade do |t|
     t.string   "title"
@@ -23,11 +34,30 @@ ActiveRecord::Schema.define(version: 20160620001219) do
   end
 
   create_table "characters", force: :cascade do |t|
-    t.string "name"
-    t.string "xp"
-    t.string "cr"
-    t.text   "climate"
-    t.text   "terrain"
+    t.string  "name"
+    t.integer "xp"
+    t.float   "cr"
+    t.integer "initiative"
+    t.integer "speed"
+    t.integer "hp"
+    t.integer "ac"
+    t.integer "ac_touch"
+    t.integer "ac_flat"
+    t.integer "fort_save"
+    t.integer "ref_save"
+    t.integer "will_save"
+    t.integer "str"
+    t.integer "dex"
+    t.integer "con"
+    t.integer "int"
+    t.integer "wis"
+    t.integer "cha"
+    t.string  "monster_type"
+    t.string  "alignment"
+    t.string  "organization"
+    t.string  "environment"
+    t.string  "treasure"
+    t.text    "description"
   end
 
   create_table "encounters", force: :cascade do |t|

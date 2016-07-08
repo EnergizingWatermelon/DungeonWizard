@@ -1,0 +1,51 @@
+-# This file is /app/views/characters/_character.html.haml
+- #This file is /app/views/maps/_map.html.haml
+%div{:class => "row"}
+  %div{:class => "col-sm-4"}
+    %h2= character.name
+    %h4= character.monster_type
+    %table{:class => "characterBody"}
+      %tbody
+        %tr
+          %td Alignment: 
+          %td= character.alignment
+          %td{:class => "characterCol" } XP:
+          %td= character.xp
+          %td{:class => "characterCol"} CR:
+          %td= character.cr
+        %tr
+          %td Initiative:
+          %td= character.initiative
+          %td{:class => "characterCol" } Speed:
+          %td= character.speed
+          %td{:class => "characterCol"} Hit Points:
+          %td= character.hp
+        %tr
+          %td AC:
+          %td= character.ac
+          %td{:class => "characterCol"} Touch AC:
+          %td= character.ac_touch
+          %td{:class => "characterCol"} Flat Footed AC:
+          %td= character.ac_flat
+        %tr
+          %td Fort Save:
+          %td= character.fort_save
+          %td{:class => "characterCol"} Ref Save:
+          %td= character.ref_save
+          %td{:class => "characterCol"} Will Save:
+          %td= character.will_save
+        %tr
+          %td Strength:
+          %td= character.str
+          %td{:class => "characterCol"}Dexterity:
+          %td= character.dex
+          %td{:class => "characterCol"}Constitution:
+          %td= character.con
+        %tr
+          %td Intelligence:
+          %td= character.int
+          %td{:class => "characterCol"}Wisdom:
+          %td= character.wis
+          %td{:class => "characterCol"}Charisma:
+          %td= character.cha
+    %p= character.description
