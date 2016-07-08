@@ -6,51 +6,5 @@
     = stylesheet_link_tag 'typeahead', 'media' => 'all'
     = stylesheet_link_tag 'application', 'media' => 'all'
   %body
-  %nav{:class => 'navbar navbar-inverse navbar-fixed-top'}
-    %div{:class => 'container-fluid'}
-      %div{:class => 'navbar-header'}
-        =link_to 'Adventures', adventures_path, {:class => 'btn btn-info navbar-btn', :disabled => 'disabled'}
-        =link_to 'Maps', maps_path, {:class => 'btn btn-info navbar-btn'}
-  %div{:class => "container", :id => "parmsContainer"}
-    = form_tag adventures_path, :method => :get do
-      %div{:class => "row"}
-        %div{:class => "col-md-6"}
-          %div{:class => "form-group"}
-            %label{:for => "PlayerCount"}Player Count
-            %input{:type => "number", :class => "form-control", :id => "PlayerCount",
-                   :name => "PlayerCount", :placeholder => "4", :min => "1"}
-          %div{:class => "form-group"}
-            %label{:for => "PlayerLevel"}Player Level
-            %input{:type => "number", :class => "form-control", :id => "PlayerLevel",
-                   :name => "PlayerLevel", :placeholder => "1", :min => "1"}
-        %div{:class => "col-md-6"}
-          %div{:class => "form-group"}
-            = label :character, :climate, 'Climate'
-            = text_field :character, :climate, {:class => "form-control typeahead", :id => "Climate",
-                   :name => "climate", :placeholder => "Temperate",
-                   'data-query' => "/characters", 'data-name' => "climate", 'data-parms' => "#parmsContainer"}
-          %div{:class => "form-group"}
-            = label :character, :terrain, 'Terrain'
-            = text_field :character, :terrain, {:class => "form-control typeahead", :id => "Terrain",
-                   :name => "terrain", :placeholder => "Forest",
-                   'data-query' => "/characters", 'data-name' => "terrain", 'data-parms' => "#parmsContainer"}
-      %div{:class => "row"}
-        %div{:class => "col-md-12"}
-          = submit_tag 'Generate!', {:class => "btn btn-success pull-right"}
-          = link_to 'Reset', adventures_path, {:class => "btn btn-default pull-right"}
-    %div{:class => "row"}
-      %div{:class => "col-md-12"}
-        %h2 Dungeon
-        %table{:class => "map"}
-          %tbody{:class => "mapBody"}
-            - 32.times do |row|
-              %tr{:class => "mapRow"}
-                - 24.times do |column|
-                  %td{:class => "mapCol"}
-                    - case @grid[row][column]
-                    - when :passage
-                      = image_tag("tiles/cells/tileDungeon.png", size: "32x32")
-                    - when :wall
-                      = image_tag("tiles/cells/tileUnplayable.png", size: "32x32")
-                    - else
-                      = image_tag("tiles/cells/tilePlayable.png", size: "32x32")
+  =render 'nav'
+  =render 'form'

@@ -1,0 +1,13 @@
+%html
+  %head
+    = stylesheet_link_tag 'bootstrap', 'media' => 'all'
+    = stylesheet_link_tag 'bootstrap-theme', 'media' => 'all'
+    = stylesheet_link_tag 'typeahead', 'media' => 'all'
+    = stylesheet_link_tag 'application', 'media' => 'all'
+  %body
+  %nav{:class => 'navbar navbar-inverse navbar-fixed-top'}
+    %div{:class => 'container-fluid'}
+      %div{:class => 'navbar-header'}
+        =link_to 'Adventures', adventures_path, {:class => 'btn btn-info navbar-btn'}
+        =link_to 'Maps', maps_path, {:class => 'btn btn-info navbar-btn'}
+        =link_to 'Encounters', maps_path, {:class => 'btn btn-info navbar-btn'}
