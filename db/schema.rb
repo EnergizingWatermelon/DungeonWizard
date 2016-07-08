@@ -55,7 +55,8 @@ ActiveRecord::Schema.define(version: 20160708023924) do
     t.string  "monster_type"
     t.string  "alignment"
     t.string  "organization"
-    t.string  "environment"
+    t.string  "climate"
+    t.string  "terrain"
     t.string  "treasure"
     t.text    "description"
   end

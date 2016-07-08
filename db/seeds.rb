@@ -22,8 +22,8 @@
 #    ]
 
 require 'csv'
-
-fields_to_insert = %w{ name xp cr initiative speed hp ac ac_touch ac_flat fort_save ref_save will_save str dex con int wis cha type alignment environment organization treasure }
+#NOTE-CSV does not have climate/terrain fields- they are condensed into 'environment'. TODO: split csv field into two
+fields_to_insert = %w{ name xp cr initiative speed hp ac ac_touch ac_flat fort_save ref_save will_save str dex con int wis cha type alignment climate terrain organization treasure }
 rows_to_insert = []
 
 CSV.foreach("lib/d20characters.csv", headers: true) do |row|
