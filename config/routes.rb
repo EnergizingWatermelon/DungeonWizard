@@ -10,6 +10,15 @@ Rails.application.routes.draw do
   
   resources :characters
   get 'characters' => 'characters#index'
+  
+  resources :application
+  get 'instructions' => 'adventures#instructions'
+  
+  resources :application
+  get 'about' => 'adventures#about'
+  
+  resources :application
+  get 'contact' => 'adventures#contact'
 
   root :to => redirect('/adventures')
   
