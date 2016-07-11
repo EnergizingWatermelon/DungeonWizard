@@ -22,7 +22,17 @@
 #    ]
 
 monsters = [{:name => 'Kobold', :xp => '100', :cr => '0.25', :climate => 'Temperate', :terrain => 'Forest'},
-            {:name => 'Red Dragon', :xp => '9001', :cr => '20', :climate => 'Warm', :terrain => 'Desert'},
+            {:name => 'Giant Scorpion', :xp => '800', :cr => '3', :climate => 'Warm', :terrain => 'Desert'},
+            {:name => 'Yeti', :xp => '1200', :cr => '4', :climate => 'Cold', :terrain => 'Mountains'},
+            {:name => 'Dire Shark', :xp => '600', :cr => '2', :climate => 'Cold', :terrain => 'Ocean'},
+            {:name => 'Dire Shark', :xp => '600', :cr => '2', :climate => 'Temperate', :terrain => 'Ocean'},
+            {:name => 'Dire Shark', :xp => '600', :cr => '2', :climate => 'Warm', :terrain => 'Ocean'},
+            {:name => 'Gorgon', :xp => '4800', :cr => '8', :climate => 'Temperate', :terrain => 'Plains'},
+            {:name => 'Dracolisk', :xp => '3200', :cr => '7', :climate => 'Temperate', :terrain => 'Swamp'},
+            {:name => 'Dark Stalker', :xp => '1200', :cr => '4', :climate => 'Cold', :terrain => 'Underground'},
+            {:name => 'Dark Stalker', :xp => '1200', :cr => '4', :climate => 'Temperate', :terrain => 'Underground'},
+            {:name => 'Dark Stalker', :xp => '1200', :cr => '4', :climate => 'Warm', :terrain => 'Underground'},
+            {:name => 'Giant Filled Lizard', :xp => '1600', :cr => '5', :climate => 'Warm', :terrain => 'Forest'},
   	 ]
 
 monsters.each do |monster|
