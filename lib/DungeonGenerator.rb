@@ -87,7 +87,7 @@ class DungeonGenerator
 								(yBounds + 1...nextY)
 				)
 				return true
-		end
+			end
 		return false
 	end
 	

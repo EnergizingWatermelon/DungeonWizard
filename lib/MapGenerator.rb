@@ -22,7 +22,7 @@ module MapGenerator
 		reps = 1000
 		#Informs the controller how to adjust x and y, given a direction
 		xdir = [1,0,-1,0]
-		ydir = [1,0,-1,0]
+		ydir = [0,1,0,-1]
 		
 		#controller location
 		cx = [0,height-1].sample
@@ -65,9 +65,9 @@ module MapGenerator
 	end
 
 	# Creates natural spaces with cellular automata rules
-	require 'CellularMap'
+	require 'NatureMap'
 	def MapGenerator.generateNatural(height, width)
-		map = CellularMap.new(height,width)
+		map = NatureMap.new(height,width)
 		map.generateCave
 		return map.grid
 	end

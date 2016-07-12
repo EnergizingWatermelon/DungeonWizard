@@ -3,7 +3,7 @@
 
 require 'BaseMap'
 # Map sublcass utilizing cellular automata for map generation
-class CellularMap < BaseMap
+class NatureMap < BaseMap
 
 
     # Generates a cave using Automata rules 
