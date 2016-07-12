@@ -17,10 +17,10 @@ class AdventuresController < ApplicationController
             if(@adventure.save)
                 redirect_to @adventure
             else
-                render 'new'
+                redirect_to '/adventures'
             end
         else
-            render 'new'
+            redirect_to '/adventures'
         end
     end
     
@@ -40,6 +40,4 @@ class AdventuresController < ApplicationController
       params.require(:map).permit(:name, :seed, :climate, :terrain)
                           .merge({:seed => Random.new_seed % 2147483647})
     end
-
-
 end

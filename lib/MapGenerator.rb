@@ -22,7 +22,7 @@ module MapGenerator
 		reps = 1000
 		#Informs the controller how to adjust x and y, given a direction
 		xdir = [1,0,-1,0]
-		ydir = [0,1,0,-1]
+		ydir = [1,0,-1,0]
 		
 		#controller location
 		cx = [0,height-1].sample
