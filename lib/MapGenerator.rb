@@ -4,6 +4,11 @@
 # Used to generate maps
 module MapGenerator
 
+	# Creates a map of an apporpriate type.
+	#
+	# ==== Attributes
+	# * +seed+ - integer seed for rng
+	# * +terrain+ - string value that determines algorithm to use. Distinguishable ptions are 'Cave' and 'Dungeon'.
 	def MapGenerator.generateMap(seed, terrain)
 		srand(seed)
 		case terrain

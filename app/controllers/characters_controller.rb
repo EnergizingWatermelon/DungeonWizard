@@ -1,6 +1,7 @@
 # Controller for Characters
 class CharactersController < ActionController::API
     
+    # Uses typeahead to search for viable terrain-climate combinations
     def index
         #params['climate'] is the value entered for Climate, or nil
         #params['terrain'] is the value entered for Terrain, or nil

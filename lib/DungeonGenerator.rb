@@ -25,6 +25,13 @@ class DungeonGenerator
 	end
 
 	#TODO: Add Gap for Walls?
+	# Checks for walls, given two corner coordinates
+	#
+	# ==== Attributes
+	# * +x0+ - top-left x coordinate
+	# * +y0+ - top-left y coordinate
+	# * +x1+ - bottom-right x coordinate
+	# * +x2+ - bottom-right y coordinate
 	private def isSpaceAvailable(x0,y0,x1,y1)
 		if(x0 >= 0 && y0 >= 0 && x1 < @height && y1 < @width)
 			for x in x0..x1 do
@@ -98,7 +105,7 @@ class DungeonGenerator
 		end
 	end
 
-	#Fills in a square
+	# Fills in a square
 	private def addSection(xRange, yRange, type = :passage)
 		for rx in xRange do
 			for ry in yRange do
