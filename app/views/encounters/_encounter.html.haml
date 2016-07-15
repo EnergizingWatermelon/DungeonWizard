@@ -1,0 +1,8 @@
+- #This file is 'app/views/encounters/_encounter.html.haml'
+%div{:class => "table"}
+  %tr
+    %td= encounter.climate
+    %td= encounter.terrain
+    %td= encounter.cr * encounter.party_size
+- @encounter.characters.each do |character|
+  = render character

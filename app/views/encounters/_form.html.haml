@@ -1,0 +1,27 @@
+- #This file is /app/views/encounters/_form.html.haml
+%div{:class => "container", :id => "parmsContainer"}
+  = form_tag encounters_path do
+    %div{:class => "row"}
+      %div{:class => "col-md-6"}
+        %div{:class => "form-group"}
+          %label{:for => "PlayerCount"}Player Count
+          %input{:type => "number", :class => "form-control", :id => "PlayerCount",
+                 :name => "encounter[party_size]", :placeholder => "4", :min => "1"}
+        %div{:class => "form-group"}
+          %label{:for => "PlayerLevel"}Player Level
+          %input{:type => "number", :class => "form-control", :id => "PlayerLevel",
+                 :name => "encounter[cr]", :placeholder => "1", :min => "1"}
+        %div{:class => "form-group"}
+          = label :map, :climate, 'Climate'
+          = text_field :map, :climate, {:class => "form-control typeahead", :id => "Climate",
+                 :name => "encounter[climate]", :placeholder => "Temperate",
+                 'data-query' => "/characters", 'data-name' => "climate", 'data-parms' => "#parmsContainer"}
+        %div{:class => "form-group"}
+          = label :map, :terrain, 'Terrain'
+          = text_field :map, :terrain, {:class => "form-control typeahead", :id => "Terrain",
+                 :name => "encounter[terrain]", :placeholder => "Forest",
+                 'data-query' => "/characters", 'data-name' => "terrain", 'data-parms' => "#parmsContainer"}
+      %div{:class => "row"}
+        %div{:class => "col-md-12"}
+          = submit_tag 'Generate!', {:class => "btn btn-success pull-right"}
+          = link_to 'Reset', encounters_path, {:class => "btn btn-default pull-right"}
