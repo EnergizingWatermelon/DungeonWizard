@@ -4,6 +4,7 @@
 # Base Map class, contains common functions for map generation
 class BaseMap
 
+	# Grid that is used for all maps being generated
 	attr_reader :grid
 
 	# Constructor

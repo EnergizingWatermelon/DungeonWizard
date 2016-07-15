@@ -59,7 +59,16 @@ tr:hover {background-color: #fff2cc;}
    
 }
 
+.characterBody{
+     border-right: 1px solid #663300;
+     border-left: 1px solid #663300;
+     border-top: 1px solid #663300;
+}
 
+.characterCol{
+    border-right: 0px solid;
+    border-left: 1px solid #663300;
+}
 
 h1 {
     color: #663300;

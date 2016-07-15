@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>typeAheadModule.js - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+</script>
+
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/darkfish.js"></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../app/assets/images/README_md.html">README</a>
+  
+    <li><a href="../../../app/assets/javascripts/adventure_coffee.html">adventure.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/application_js.html">application.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/encounter_coffee.html">encounter.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/typeAheadModule_js.html">typeAheadModule.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/typeaheadinit_js.html">typeaheadinit.js</a>
+  
+    <li><a href="../../../app/assets/stylesheets/adventure_css.html">adventure.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/adventure_scss.html">adventure.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/application_css.html">application.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/encounter_scss.html">encounter.scss</a>
+  
+    <li><a href="../../../app/views/adventures/_adventure_html_haml.html">_adventure.html.haml</a>
+  
+    <li><a href="../../../app/views/adventures/_form_html_haml.html">_form.html.haml</a>
+  
+    <li><a href="../../../app/views/adventures/index_html_haml.html">index.html.haml</a>
+  
+    <li><a href="../../../app/views/adventures/show_html_haml.html">show.html.haml</a>
+  
+    <li><a href="../../../app/views/application/_nav_html_haml.html">_nav.html.haml</a>
+  
+    <li><a href="../../../app/views/application/about_html_haml.html">about.html.haml</a>
+  
+    <li><a href="../../../app/views/application/contact_html_haml.html">contact.html.haml</a>
+  
+    <li><a href="../../../app/views/application/instructions_html_haml.html">instructions.html.haml</a>
+  
+    <li><a href="../../../app/views/characters/_character_html_haml.html">_character.html.haml</a>
+  
+    <li><a href="../../../app/views/encounters/index_html_haml.html">index.html.haml</a>
+  
+    <li><a href="../../../app/views/maps/_form_html_haml.html">_form.html.haml</a>
+  
+    <li><a href="../../../app/views/maps/_map_html_haml.html">_map.html.haml</a>
+  
+    <li><a href="../../../app/views/maps/create_html_haml.html">create.html.haml</a>
+  
+    <li><a href="../../../app/views/maps/index_html_haml.html">index.html.haml</a>
+  
+    <li><a href="../../../app/views/maps/new_html_haml.html">new.html.haml</a>
+  
+    <li><a href="../../../app/views/maps/show_html_haml.html">show.html.haml</a>
+  
+    <li><a href="../../../lib/tasks/cucumber_rake.html">cucumber.rake</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page app/assets/javascripts/typeAheadModule.js">
+
+<pre>Example 
+ &lt;ANY id=&quot;parmsContainer&quot;&gt;&lt;/ANY&gt;
+     &lt;INPUT type=&quot;text&quot; class=&quot;typeahead&quot; data-query=&quot;/lookups&quot; data-name=&quot;thisFilterName&quot; data-parms=&quot;#parmsContainer&quot; /&gt;
+     &lt;!-- all other scripts like jQuery, Bootstrap, and typeahead.js--&gt;
+     &lt;script src=&quot;~/scripts/typeaheadmodule.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+     &lt;script type=&quot;text/javascript&quot;&gt;
+             $(function() {// tell jQuery to run this when the DOM loads
+                     var typeaheads = $(&#39;.typeahead&#39;);
+                     typeAheadModule.init(typeaheads);
+             });
+     &lt;/script&gt;</pre>
+
+<p>var typeAheadModule = (function() {</p>
+
+<pre>// data-query=/lookups
+const DataAttrQuery = &quot;query&quot;;
+
+// data-params=&quot;in-scope of element object with fields on it&quot;
+const DataAttrSharedParms = &quot;parms&quot;
+
+// data-name
+const DataAttrName = &quot;name&quot;;
+
+function cloneObject(obj) {
+        var keys = Object.keys(obj);
+        var key = null;
+        var val = {};
+        for(var i = 0; i &lt; keys.length; i++) {
+                key = keys[i];
+                val[key] = obj[key];
+        }
+
+        return val;
+}
+
+function getAttrParm($e, name) {
+        return $e.attr(&#39;data-&#39;+name);
+}
+// init a set of typeahead elements using the jQuery selected elements
+function makeTypeahead($elems) {
+        var parms = {};
+        const sharedParmName = &#39;dat&#39;;
+        // for all matched elements
+        $elems.each(function(ix, elem) {
+                var $elem = $(elem);
+                var name = getAttrParm($elem, DataAttrName);
+                var dataId = getAttrParm($elem, DataAttrSharedParms);
+                var dataKey = dataId.substr(1);
+                var dataElem = null;
+                if(parms.hasOwnProperty(dataKey))
+                {
+                        dataElem = parms[dataKey];
+                } 
+                else 
+                {
+                        dataElem = $(dataId).eq(0);
+                        parms[dataKey] = dataElem;
+                }
+
+                // create a getter method for this element&#39;s data object
+                var data = function(obj) {
+
+                        if(arguments.length) {
+                                $.data(parms[dataKey], sharedParmName, obj);
+                                return;
+                        }
+
+                        var d = $.data(parms[dataKey], sharedParmName);
+
+                        if(d) {
+                                return d;
+                        }
+
+                        d = {};
+                        $.data(parms[dataKey], sharedParmName, d);
+
+                        return d;//has all query properties on it
+                };
+
+                // where we send the HTTP GET
+                var action = getAttrParm($elem, DataAttrQuery);// where to send request
+
+                // create the typeahead.js compat delegate for getting the matches
+                function remoteQuery(filter, syncResults, asyncResults) {
+                        var d = data();//get the data with our getter
+                        var clone = cloneObject(d);// make a copy
+                        clone.target = name;//append the well-known target property so the controller knows what typeahead is asking
+
+                        // return the Deferred/Promise from the HTTP GET Ajax request with the then(success) callback arranged already
+                        // such that it tells typeahead.js about the data fetched asyncronously
+                        return $.get(action, clone)
+                        .then(function(serverData) {
+                                /// results.data should be there from ajax request
+                                asyncResults(serverData);//[{ id: ##, name: &quot;&quot;}, ...]
+                        });//returns a Deferred
+                }
+
+                // when we init the typeahead, we want a that reference so we can listen to events
+                var that = $elem.typeahead(
+                {
+                        highlight: true,
+                        hint: true,
+                        minLength: 1// must type at-least one character before remoteQuery invoked
+                }, 
+                {
+                        name: name,//name of this lookup/target
+                        source: remoteQuery,//does the query on the remote &amp; local end
+                        async: true,//does do a remote query
+                        limit: 20,// only show top 20 results regardless of getting more
+                        display: function(item) { // what to display from the item; assumes a particular structure, but can just be a list of strings (so return item;)
+                                console.log(&#39;Display return: &#39; + JSON.stringify(item));
+                                return item[name];//item = { id: ##, name: &quot;string&quot; }
+                        }
+                });
+
+                // ensure that when a selection is made, we update the shared typeahead object
+                // this is how other typeaheads can always get the value of all other related 
+                // fields without having to do too much horsing around
+                that.bind(&#39;typeahead:selected&#39;, function(event, suggestion) {
+                        var d = data();
+                        d[name] = suggestion[name];
+                        data(d);
+                        console.log(&#39;Suggestion for &#39; + name + &#39;: &#39; + JSON.stringify(suggestion));
+                });
+        });
+}
+
+// return module API surface area
+return { init: makeTypeahead };</pre>
+
+<p>})();</p>
+
+<p>/// app scripts run after here!</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

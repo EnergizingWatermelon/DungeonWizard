@@ -38,3 +38,19 @@ monsters = [{:name => 'Kobold', :xp => '100', :cr => '0.25', :climate => 'Temper
 monsters.each do |monster|
   Character.create!(monster)
 end
+
+=begin
+require 'csv'
+#NOTE-CSV does not have climate/terrain fields- they are condensed into 'environment'. TODO: splite csv field into two
+fields_to_insert = %w{ name xp cr initiative speed hp ac ac_touch ac_flat fort_save ref_save will_save str dex con int wis cha type alignment climate terrain organization treasure }
+rows_to_insert = []
+
+CSV.foreach("lib/d20characters.csv", headers: true) do |row|
+  row_to_insert = row.to_hash.select { |k, v| fields_to_insert.include?(k) }
+  rows_to_insert << row_to_insert
+end
+
+rows_to_insert.each do |monster|
+  Character.create!(monster)
+end
+=end
