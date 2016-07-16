@@ -12,19 +12,7 @@ class EncountersController < ApplicationController
     def create
         @encounter = Encounter.new(encounter_params)
         @encounter.xp = experience_award(adjust_party_level(@encounter.cr, @encounter.party_size))
- 
-        xp = 0
-        #Gather a collection of characters that can spawn in this area and whose CR will not exceed the total value
-        while xp < @encounter.xp
-            characters = Character.where("cr <= ?", total - xp)
-                                  .where("climate == ?", @encounter.climate)
-                                  .where("terrain == ?", @encounter.terrain)
-            character = characters.sample
-            xp += character.xp
-            @encounter.characters << character
-        end
-        
-        
+        @encounter.characters = Encounter.calculateCharacters(@encounter.xp, @encounter.climate, @encounter.terrain)
         if(@encounter.save)
             redirect_to @encounter
         else
