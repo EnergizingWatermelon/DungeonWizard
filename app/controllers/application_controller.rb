@@ -5,16 +5,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
    
    
-  # Validates all necessary parameters for Encounters
-  protected
-    def encounter_params
-      params.require(:encounter).permit(:details, :party_size, :cr, :climate, :terrain, :seed)
-    end
-
- # Validates all necessary parameters for Adventures
+  # Validates all necessary parameters for Adventures
   protected
     def adventure_params
       params.require(:adventure).permit(:title, :plot, :party_size, :cr)
+    end
+   
+  # Validates all necessary parameters for Encounters
+  protected
+    def encounter_params
+      params.require(:encounter).permit(:details, :party_size, :cr, :climate, :terrain)
     end
     
   # Validates all necessary parameters for Maps
