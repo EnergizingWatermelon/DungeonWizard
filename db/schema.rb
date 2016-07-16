@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(version: 20160708023924) do
     t.text     "details"
     t.integer  "party_size"
     t.float    "cr"
+    t.integer  "xp"
     t.string   "climate"
     t.string   "terrain"
-    t.integer  "seed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

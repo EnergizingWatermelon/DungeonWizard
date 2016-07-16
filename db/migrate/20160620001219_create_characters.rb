@@ -32,9 +32,9 @@ class CreateCharacters < ActiveRecord::Migration
       e.text :details
       e.integer :party_size
       e.float :cr
+      e.integer :xp
       e.string :climate
       e.string :terrain
-      e.integer :seed
       e.timestamps null: false
     end
     
