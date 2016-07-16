@@ -33,18 +33,4 @@ class AdventuresController < ApplicationController
         @adventure = Adventure.find(params[:id])
         @grid = MapGenerator.generateMap(@adventure.map.seed, @adventure.map.terrain)
     end
-
-  # Validates all necessary parameters for Adventures
-  private
-    def adventure_params
-      params.require(:adventure).permit(:title, :plot, :party_size, :cr)
-    end
-    
-  # Validates all necessary parameters for Maps
-  private
-    def map_params
-      #Merge a new random seed into the initial params
-      params.require(:map).permit(:name, :seed, :climate, :terrain)
-                          .merge({:seed => Random.new_seed % 2147483647})
-    end
 end

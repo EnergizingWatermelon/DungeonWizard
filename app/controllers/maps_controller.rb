@@ -34,11 +34,4 @@ class MapsController < ApplicationController
     redirect_to maps_path
   end
   
-  # Validates map parameters necessary for map creation
-  private
-    def map_params
-      #Merge a new random seed into the initial params
-      params.require(:map).permit(:name, :seed, :climate, :terrain)
-                          .merge({:seed => Random.new_seed % 2147483647})
-    end
 end
