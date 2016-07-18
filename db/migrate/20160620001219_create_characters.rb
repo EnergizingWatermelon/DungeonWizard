@@ -35,6 +35,7 @@ class CreateCharacters < ActiveRecord::Migration
       e.integer :xp
       e.string :climate
       e.string :terrain
+      e.references :adventure, index: true, foreign_key: true
       e.timestamps null: false
     end
     

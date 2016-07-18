@@ -76,9 +76,12 @@ ActiveRecord::Schema.define(version: 20160708023924) do
     t.integer  "xp"
     t.string   "climate"
     t.string   "terrain"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "adventure_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
+
+  add_index "encounters", ["adventure_id"], name: "index_encounters_on_adventure_id"
 
   create_table "maps", force: :cascade do |t|
     t.string  "name"
