@@ -19,8 +19,8 @@ class BaseMap
 	# ==== Attributes
 	# * +wallRatio+ - ratio of Walls to Open spaces
 	def randomize(wallRatio = 0.4)
-		for x in 0..@height do
-			for y in 0..@width do
+		for x in 0...@height  do
+			for y in 0...@width do
 				@grid[x][y] = rand > wallRatio ? :open : :wall
 			end
 		end
