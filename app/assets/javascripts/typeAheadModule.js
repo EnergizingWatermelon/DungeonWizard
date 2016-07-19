@@ -120,7 +120,12 @@ var typeAheadModule = (function() {
 			// fields without having to do too much horsing around
 			that.bind('typeahead:selected', function(event, suggestion) {
 				var d = data();
-				d[name] = suggestion[name];
+				if (suggestion[name] == "Any") {
+					d = null;
+					suggestion = null;
+				} else {
+					d[name] = suggestion[name];
+				}
 				data(d);
 				console.log('Suggestion for ' + name + ': ' + JSON.stringify(suggestion));
 			});

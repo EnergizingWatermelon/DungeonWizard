@@ -8,13 +8,13 @@ class CharactersController < ActionController::API
         #params['target'] is the field in user focus
         if params['target'] == 'climate'
             if params['terrain']
-                array = Character.where(terrain: params['terrain']).select('climate').distinct
+                array = Character.where(terrain: [params['terrain'], 'Any']).select('climate').distinct
             else
                 array = Character.select(:climate).distinct
             end
         elsif params['target'] == 'terrain'
             if params['climate']
-                array = Character.where(climate: params['climate']).select('terrain').distinct
+                array = Character.where(climate: [params['climate'], 'Any']).select('terrain').distinct
             else
                 array = Character.select(:terrain).distinct
             end
