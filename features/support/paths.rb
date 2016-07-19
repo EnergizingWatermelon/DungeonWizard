@@ -14,15 +14,27 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-		'/'
+		  '/'
     when /^the DungeonWizard home page/
-		'/maps'
-	when /^the Map Generator page/
-		'/maps'
-	when /^the Encounter Generator page/
-		'/encounters'
-	when /^the Adventure Generator page/
-		'/adventures'
+		  '/maps'
+  	when /^the Map Generator page/
+		  '/maps'
+	  when /^the Encounter Generator page/
+		  '/encounters'
+	  when /^the Adventure Generator page/
+		  '/adventures'
+		when /^the About page/
+		  '/about'
+		when /^the Contact page/
+		  '/contact'
+		when /^the Instructions page/
+		  '/instructions'
+		when /^a map page/
+		  '/maps/1'
+		when /^an encounter page/
+		  '/encounters/1'
+		when /^an adventure page/
+		  '/adventures/1'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
