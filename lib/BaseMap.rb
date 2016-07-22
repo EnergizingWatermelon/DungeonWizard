@@ -6,6 +6,8 @@ class BaseMap
 
 	# Grid that is used for all maps being generated
 	attr_reader :grid
+	attr_reader :height
+	attr_reader :width
 
 	# Constructor
 	def initialize(height = 24, width = 32)
@@ -19,8 +21,8 @@ class BaseMap
 	# ==== Attributes
 	# * +wallRatio+ - ratio of Walls to Open spaces
 	def randomize(wallRatio = 0.4)
-		for x in 0..@height do
-			for y in 0..@width do
+		for x in 0...@height  do
+			for y in 0...@width do
 				@grid[x][y] = rand > wallRatio ? :open : :wall
 			end
 		end
