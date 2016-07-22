@@ -19,7 +19,7 @@ class MapsController < ApplicationController
       if(@map.save)
           redirect_to @map
       else
-        redirect_to maps_path
+        redirect_to '/maps'
       end
   end
 
@@ -31,7 +31,7 @@ class MapsController < ApplicationController
   def destroy
     @map = Map.find(params[:id])
     @map.destroy
-    redirect_to maps_path
+    redirect_to '/maps'
   end
   
   # Validates map parameters necessary for map creation
