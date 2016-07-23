@@ -37,13 +37,17 @@ class Encounter < ActiveRecord::Base
                     24 => 1228800,
                     25 => 1638400
         }
+=begin
+        #lerp experience rewards
         xp_amount = 0
         cr_floor = challenge_rating.to_f.floor
         cr_ceil = challenge_rating.to_f.ceil
         if(cr_ceil <= 25 && cr_floor >= 0)
             xp_amount = experience[cr_floor] +(experience[cr_ceil] - experience[cr_floor]) *  ((challenge_rating.to_f - cr_floor)/(cr_ceil - cr_floor))
         end
-        return xp_amount.round
+        return xp_amount
+=end
+        return experience[challenge_rating.to_i]
     end
     
   # Adjusts average party level based on party size, per Pathfinder's suggestion
