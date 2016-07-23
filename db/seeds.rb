@@ -25,6 +25,7 @@ monsters = [{:name => 'Kobold', :xp => '100', :cr => '0.25', :climate => 'Temper
             {:name => 'Giant Scorpion', :xp => '800', :cr => '3', :climate => 'Warm', :terrain => 'Desert'},
             {:name => 'Yeti', :xp => '1200', :cr => '4', :climate => 'Cold', :terrain => 'Mountains'},
             {:name => 'Dire Shark', :xp => '600', :cr => '2', :climate => 'Any', :terrain => 'Ocean'},
+            {:name => 'Killer Whale', :xp => '100', :cr => '0.25', :climate => 'Cold', :terrain => 'Ocean'},
             {:name => 'Gorgon', :xp => '4800', :cr => '8', :climate => 'Temperate', :terrain => 'Plains'},
             {:name => 'Dracolisk', :xp => '3200', :cr => '7', :climate => 'Temperate', :terrain => 'Swamp'},
             {:name => 'Dark Stalker', :xp => '1200', :cr => '4', :climate => 'Cold', :terrain => 'Underground'},
