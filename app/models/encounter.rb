@@ -10,7 +10,8 @@ class Encounter < ActiveRecord::Base
   # Returns the appropriate experience reward for a given challenge rating
   protected
     def self.experience_reward(challenge_rating)
-        experience={1 => 400,
+        experience={0 => 0,
+                    1 => 400,
                     2 => 600,
                     3 => 800,
                     4 => 1200,
@@ -36,16 +37,21 @@ class Encounter < ActiveRecord::Base
                     24 => 1228800,
                     25 => 1638400
         }
-        
-        return experience[challenge_rating.to_i] || 0
+        xp_amount = 0
+        cr_floor = challenge_rating.to_f.floor
+        cr_ceil = challenge_rating.to_f.ceil
+        if(cr_ceil <= 25 && cr_floor >= 0)
+            xp_amount = experience[cr_floor] +(experience[cr_ceil] - experience[cr_floor]) *  ((challenge_rating.to_f - cr_floor)/(cr_ceil - cr_floor))
+        end
+        return xp_amount.round
     end
     
   # Adjusts average party level based on party size, per Pathfinder's suggestion
     def self.adjust_party_level(party_level, party_size)
         if party_size.to_i > 6
-            party_level += 1
+            party_level = party_level + 1
         elsif party_size.to_i < 4
-            party_level -= 1
+            party_level = party_level - 1
         end
         return party_level
     end
