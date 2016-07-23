@@ -59,13 +59,13 @@ tr:hover {background-color: #fff2cc;}
    
 }
 
-.characterBody{
+.characterBody {
      border-right: 1px solid #663300;
      border-left: 1px solid #663300;
      border-top: 1px solid #663300;
 }
 
-.characterRow{
+.characterRow {
     width: 372px;
 }
 .characterHeader{
@@ -95,4 +95,15 @@ p {
 
 .btn {
     margin-left: 0.5em;
+}
+
+#characterPanel {
+    background-color: #485abf;
+    border: 2px solid;
+    width: 372px;
+}
+
+#encounterTable {
+    background-color: blue;
+    border: 5px solid;
 }

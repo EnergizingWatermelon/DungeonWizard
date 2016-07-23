@@ -5,16 +5,15 @@ class Adventure < ActiveRecord::Base
     has_many :encounters
     
     #Generate a random number of encounters
-    def self.calculateEncounters(enc_params)
+    def self.calculateEncounters(adventure, enc_params)
         num_encounters = 5 + rand(5)
-        encounters = Array.new(num_encounters)
+        #adventure.encounters = Array.new(num_encounters)
         #encounters.each do |encounter|
+         enc_params[:xp] = Encounter.calculateExperienceReward(enc_params[:cr], enc_params[:party_size])
         num_encounters.times do |i|
-            encounter = Encounter.new(enc_params)
-            encounter.xp = Encounter.calculateExperienceReward(enc_params[:cr], enc_params[:party_size])
-            encounter.characters = Encounter.calculateCharacters(encounter.xp, encounter.climate, encounter.terrain)
-            encounters[i] = encounter
+            adventure.encounters << Encounter.new(enc_params)
+            #encounter.xp = Encounter.calculateExperienceReward(enc_params[:cr], enc_params[:party_size])
+            adventure.encounters[i].characters = Encounter.calculateCharacters(enc_params[:xp], enc_params[:climate], enc_params[:terrain])
         end
-        return encounters
     end
 end

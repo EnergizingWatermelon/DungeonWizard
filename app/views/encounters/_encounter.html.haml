@@ -1,9 +1,11 @@
 - #This file is 'app/views/encounters/_encounter.html.haml'
-%div{:class => "table"}
-  %tr
-    %td= encounter.climate
-    %td= encounter.terrain
-    %td= encounter.xp
-- encounter.characters.each do |character|
-  - unless character.nil?
-    = render character
+%div{:class => "container", :id => "encounterTable"}
+  %div{:class => "table"}
+    %tr
+      %td= encounter.climate
+      %td= encounter.terrain
+      %td= encounter.xp
+  %div{:class => "col-sm-4"}
+    - encounter.characters.each do |character|
+      - unless character.nil?
+        = render character

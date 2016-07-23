@@ -10,38 +10,34 @@ class Encounter < ActiveRecord::Base
   # Returns the appropriate experience reward for a given challenge rating
   protected
     def self.experience_reward(challenge_rating)
-        experience={0.125 => 50,
-                    0.166 => 65,
-                    0.25 => 100,
-                    0.333 => 135,
-                    0.5 => 200,
-                    1.0 => 400,
-                    2.0 => 600,
-                    3.0 => 800,
-                    4.0 => 1200,
-                    5.0 => 1600,
-                    6.0 => 2400,
-                    7.0 => 3200,
-                    8.0 => 4800,
-                    9.0 => 6400,
-                    10.0 => 9600,
-                    11.0 => 12800,
-                    12.0 => 19200,
-                    13.0 => 25600,
-                    14.0 => 38400,
-                    15.0 => 51200,
-                    16.0 => 76800,
-                    17.0 => 102400,
-                    18.0 => 153600,
-                    19.0 => 204800,
-                    20.0 => 307200,
-                    21.0 => 409600,
-                    22.0 => 614400,
-                    23.0 => 819200,
-                    24.0 => 1228800,
-                    25.0 => 1638400
+        experience={1 => 400,
+                    2 => 600,
+                    3 => 800,
+                    4 => 1200,
+                    5 => 1600,
+                    6 => 2400,
+                    7 => 3200,
+                    8 => 4800,
+                    9 => 6400,
+                    10 => 9600,
+                    11 => 12800,
+                    12 => 19200,
+                    13 => 25600,
+                    14 => 38400,
+                    15 => 51200,
+                    16 => 76800,
+                    17 => 102400,
+                    18 => 153600,
+                    19 => 204800,
+                    20 => 307200,
+                    21 => 409600,
+                    22 => 614400,
+                    23 => 819200,
+                    24 => 1228800,
+                    25 => 1638400
         }
-        return experience[challenge_rating] || 0
+        
+        return experience[challenge_rating.to_i] || 0
     end
     
   # Adjusts average party level based on party size, per Pathfinder's suggestion
@@ -56,12 +52,15 @@ class Encounter < ActiveRecord::Base
     
     def self.calculateCharacters(xp, climate, terrain)
         sum = 0
-       characters = Array.new
+        characters = Array.new
         #Gather a collection of characters that can spawn in this area and whose CR will not exceed the total value
         while sum < xp
             options = Character.where("cr <= ?", xp - sum)
                                   .where("climate == ?", climate)
                                   .where("terrain == ?", terrain)
+            if options.empty?
+                return characters
+            end
             character = options.sample
             sum += character.xp
             characters << character

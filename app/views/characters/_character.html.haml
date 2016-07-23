@@ -1,8 +1,8 @@
 -# This file is /app/views/characters/_character.html.haml
 - #This file is /app/views/maps/_map.html.haml
-%div{:class => "row"}
+%div{:class => "row", :id => "characterPanel"}
   %div{:class => "col-sm-4"}
-    %h2= character.name
+    %h3{:class => "characterName"}= character.name
     %h4= character.monster_type
     %table{:class => "characterBody"}
       %tbody

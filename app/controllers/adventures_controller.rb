@@ -18,7 +18,25 @@ class AdventuresController < ApplicationController
         @adventure = Adventure.new(adventure_params)
         if (@adventure.save)
             @adventure.map = Map.new(map_params)
-            @adventure.encounters = Adventure.calculateEncounters(adv_encounter_params)
+            num_encounters = 5 + rand(5)
+            xp = Encounter.calculateExperienceReward(adventure_params[:cr], adventure_params[:party_size])
+            num_encounters.times do |i|
+                encounter = Encounter.new(adv_encounter_params)
+                encounter.xp = xp
+                encounter.characters =  Encounter.calculateCharacters(  xp, 
+                                                                        adv_encounter_params[:climate], 
+                                                                        adv_encounter_params[:terrain])
+                @adventure.encounters << encounter
+                
+=begin
+                @adventure.encounters[i].xp = xp
+                @adventure.encounters[i].characters = Encounter.calculateCharacters(xp, 
+                                                                                    adv_encounter_params[:climate], 
+                                                                                    adv_encounter_params[:terrain])
+=end
+            end
+            
+            #Adventure.calculateEncounters(@adventure, adv_encounter_params)
             if(@adventure.save)
                 redirect_to @adventure
             else
