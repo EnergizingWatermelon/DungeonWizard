@@ -3,7 +3,6 @@
 %div{:class => "panel panel-primary", :id => "characterPanel"}
   %div{:class => "panel-heading", :id => "characterPanelHeading"}= character.name
   %div{:class => ".col-sm-4"}
-    %h4= character.monster_type
     %table{:class => "characterBody"}
       %tbody
         %tr{:class => "characterRow"}
@@ -59,9 +58,7 @@
           %td{:class => "characterCol"}=character.wis
           %td{:class => "characterCol"}= character.cha
         %tr{:class => "characterRow"}
-          %th{:class => "characterHeader"}Organization
           %th{:class => "characterHeader"}Treasure
         %tr{:class => "characterRow"}
-          %td= character.organization
           %td= character.treasure
     %p= character.description
