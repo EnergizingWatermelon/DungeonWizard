@@ -27,15 +27,8 @@ class AdventuresController < ApplicationController
                                                                         adv_encounter_params[:climate], 
                                                                         adv_encounter_params[:terrain])
                 @adventure.encounters << encounter
-                
-=begin
-                @adventure.encounters[i].xp = xp
-                @adventure.encounters[i].characters = Encounter.calculateCharacters(xp, 
-                                                                                    adv_encounter_params[:climate], 
-                                                                                    adv_encounter_params[:terrain])
-=end
             end
-            
+    
             #Adventure.calculateEncounters(@adventure, adv_encounter_params)
             if(@adventure.save)
                 redirect_to @adventure

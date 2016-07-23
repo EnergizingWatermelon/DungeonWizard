@@ -142,7 +142,7 @@ save, the user is redirected to the index</p>
     <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@map</span>.<span class="ruby-identifier">save</span>)
         <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@map</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">maps_path</span>
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/maps&#39;</span>
     <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -178,7 +178,7 @@ save, the user is redirected to the index</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@map</span> = <span class="ruby-constant">Map</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@map</span>.<span class="ruby-identifier">destroy</span>
-  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">maps_path</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/maps&#39;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -60,6 +60,24 @@
   
     <li><a href="../../../app/assets/images/README_md.html">README</a>
   
+    <li><a href="../../../app/assets/javascripts/adventure_coffee.html">adventure.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/application_js.html">application.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/encounter_coffee.html">encounter.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/typeAheadModule_js.html">typeAheadModule.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/typeaheadinit_js.html">typeaheadinit.js</a>
+  
+    <li><a href="../../../app/assets/stylesheets/adventure_css.html">adventure.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/adventure_scss.html">adventure.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/application_css.html">application.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/encounter_scss.html">encounter.scss</a>
+  
     <li><a href="../../../app/views/adventures/_adventure_html_haml.html">_adventure.html.haml</a>
   
     <li><a href="../../../app/views/adventures/_form_html_haml.html">_form.html.haml</a>
@@ -78,7 +96,13 @@
   
     <li><a href="../../../app/views/characters/_character_html_haml.html">_character.html.haml</a>
   
+    <li><a href="../../../app/views/encounters/_encounter_html_haml.html">_encounter.html.haml</a>
+  
+    <li><a href="../../../app/views/encounters/_form_html_haml.html">_form.html.haml</a>
+  
     <li><a href="../../../app/views/encounters/index_html_haml.html">index.html.haml</a>
+  
+    <li><a href="../../../app/views/encounters/show_html_haml.html">show.html.haml</a>
   
     <li><a href="../../../app/views/maps/_form_html_haml.html">_form.html.haml</a>
   
@@ -91,6 +115,8 @@
     <li><a href="../../../app/views/maps/new_html_haml.html">new.html.haml</a>
   
     <li><a href="../../../app/views/maps/show_html_haml.html">show.html.haml</a>
+  
+    <li><a href="../../../lib/tasks/cucumber_rake.html">cucumber.rake</a>
   
   </ul>
 </div>
@@ -105,55 +131,71 @@
 <p>#This file is /app/views/maps/_map.html.haml</p>
 </li></ul>
 
-<p>%div{:class =&gt; “row”}</p>
+<p>%div{:class =&gt; “panel panel-primary”, :id =&gt; “characterPanel”}</p>
 
-<pre>%div{:class =&gt; &quot;col-sm-4&quot;}
-  %h2= character.name
+<pre>%div{:class =&gt; &quot;panel-heading&quot;, :id =&gt; &quot;characterPanelHeading&quot;}= character.name
+%div{:class =&gt; &quot;.col-sm-4&quot;}
   %h4= character.monster_type
   %table{:class =&gt; &quot;characterBody&quot;}
     %tbody
-      %tr
-        %td Alignment: 
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %th{:class =&gt; &quot;characterHeader&quot;} Alignment
+        %th{:class =&gt; &quot;characterHeader&quot;} Monster Type
+      %tr{:class =&gt; &quot;characterRow&quot;}
         %td= character.alignment
-        %td{:class =&gt; &quot;characterCol&quot; } XP:
-        %td= character.xp
-        %td{:class =&gt; &quot;characterCol&quot;} CR:
-        %td= character.cr
-      %tr
-        %td Initiative:
+        %td= character.monster_type
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %th{:class =&gt; &quot;characterHeader&quot;} XP
+        %th{:class =&gt; &quot;characterHeader&quot;} CR
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %td{:class =&gt; &quot;characterCol&quot;}= character.xp
+        %td{:class =&gt; &quot;characterCol&quot;}= character.cr
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %th{:class =&gt; &quot;characterHeader&quot;} Initiative
+        %th{:class =&gt; &quot;characterHeader&quot;} Speed
+        %td{:class =&gt; &quot;characterHeader&quot;} Hit Points
+      %tr{:class =&gt; &quot;characterRow&quot;}
         %td= character.initiative
-        %td{:class =&gt; &quot;characterCol&quot; } Speed:
-        %td= character.speed
-        %td{:class =&gt; &quot;characterCol&quot;} Hit Points:
-        %td= character.hp
-      %tr
-        %td AC:
+        %td{:class =&gt; &quot;characterCol&quot;}= character.speed
+        %td{:class =&gt; &quot;characterCol&quot;}= character.hp
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %th{:class =&gt; &quot;characterHeader&quot;} AC
+        %th{:class =&gt; &quot;characterHeader&quot;} Touch AC
+        %th{:class =&gt; &quot;characterHeader&quot;} Flat Footed AC
+      %tr{:class =&gt; &quot;characterRow&quot;}
         %td= character.ac
-        %td{:class =&gt; &quot;characterCol&quot;} Touch AC:
-        %td= character.ac_touch
-        %td{:class =&gt; &quot;characterCol&quot;} Flat Footed AC:
-        %td= character.ac_flat
-      %tr
-        %td Fort Save:
+        %td{:class =&gt; &quot;characterCol&quot;}= character.ac_touch
+        %td{:class =&gt; &quot;characterCol&quot;}= character.ac_flat
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %th{:class =&gt; &quot;characterHeader&quot;} Fortitude Save
+        %th{:class =&gt; &quot;characterHeader&quot;} Reflex Save
+        %th{:class =&gt; &quot;characterHeader&quot;} Will Save
+      %tr{:class =&gt; &quot;characterRow&quot;}
         %td= character.fort_save
-        %td{:class =&gt; &quot;characterCol&quot;} Ref Save:
-        %td= character.ref_save
-        %td{:class =&gt; &quot;characterCol&quot;} Will Save:
-        %td= character.will_save
-      %tr
-        %td Strength:
-        %td= character.str
-        %td{:class =&gt; &quot;characterCol&quot;}Dexterity:
-        %td= character.dex
-        %td{:class =&gt; &quot;characterCol&quot;}Constitution:
-        %td= character.con
-      %tr
-        %td Intelligence:
+        %td{:class =&gt; &quot;characterCol&quot;}= character.ref_save
+        %td{:class =&gt; &quot;characterCol&quot;}= character.will_save
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %th{:class =&gt; &quot;characterHeader&quot;} Strength
+        %th{:class =&gt; &quot;characterHeader&quot;} Dexterity
+        %th{:class =&gt; &quot;characterHeader&quot;} Constitution
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %td{:class =&gt; &quot;characterCol&quot;}= character.str
+        %td{:class =&gt; &quot;characterCol&quot;}= character.dex
+        %td{:class =&gt; &quot;characterCol&quot;}= character.con
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %th{:class =&gt; &quot;characterHeader&quot;} Intelligence
+        %th{:class =&gt; &quot;characterHeader&quot;} Wisdom
+        %th{:class =&gt; &quot;characterHeader&quot;} Charisma
+      %tr{:class =&gt; &quot;characterRow&quot;}
         %td= character.int
-        %td{:class =&gt; &quot;characterCol&quot;}Wisdom:
-        %td= character.wis
-        %td{:class =&gt; &quot;characterCol&quot;}Charisma:
-        %td= character.cha
+        %td{:class =&gt; &quot;characterCol&quot;}=character.wis
+        %td{:class =&gt; &quot;characterCol&quot;}= character.cha
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %th{:class =&gt; &quot;characterHeader&quot;}Organization
+        %th{:class =&gt; &quot;characterHeader&quot;}Treasure
+      %tr{:class =&gt; &quot;characterRow&quot;}
+        %td= character.organization
+        %td= character.treasure
   %p= character.description</pre>
 </main>
 

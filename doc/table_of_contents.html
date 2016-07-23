@@ -28,10 +28,38 @@
     <a href="app/assets/images/README_md.html">README</a>
   </li>
     <li class="file">
+    <a href="app/assets/javascripts/adventure_coffee.html">adventure.coffee</a>
+  </li>
+    <li class="file">
+    <a href="app/assets/javascripts/application_js.html">application.js</a>
+  </li>
+    <li class="file">
+    <a href="app/assets/javascripts/encounter_coffee.html">encounter.coffee</a>
+  </li>
+    <li class="file">
+    <a href="app/assets/javascripts/typeAheadModule_js.html">typeAheadModule.js</a>
+  </li>
+    <li class="file">
+    <a href="app/assets/javascripts/typeaheadinit_js.html">typeaheadinit.js</a>
+  </li>
+    <li class="file">
+    <a href="app/assets/stylesheets/adventure_css.html">adventure.css</a>
+  </li>
+    <li class="file">
+    <a href="app/assets/stylesheets/adventure_scss.html">adventure.scss</a>
+  </li>
+    <li class="file">
+    <a href="app/assets/stylesheets/application_css.html">application.css</a>
+  </li>
+    <li class="file">
+    <a href="app/assets/stylesheets/encounter_scss.html">encounter.scss</a>
+  </li>
+    <li class="file">
     <a href="app/views/adventures/_adventure_html_haml.html">_adventure.html.haml</a>
 
     <ul>
       <li><a href="app/views/adventures/_adventure_html_haml.html#label-render+-40adventure.map">render @adventure.map</a>
+      <li><a href="app/views/adventures/_adventure_html_haml.html#label-render+encounter">render encounter</a>
     </ul>
   </li>
     <li class="file">
@@ -59,7 +87,16 @@
     <a href="app/views/characters/_character_html_haml.html">_character.html.haml</a>
   </li>
     <li class="file">
+    <a href="app/views/encounters/_encounter_html_haml.html">_encounter.html.haml</a>
+  </li>
+    <li class="file">
+    <a href="app/views/encounters/_form_html_haml.html">_form.html.haml</a>
+  </li>
+    <li class="file">
     <a href="app/views/encounters/index_html_haml.html">index.html.haml</a>
+  </li>
+    <li class="file">
+    <a href="app/views/encounters/show_html_haml.html">show.html.haml</a>
   </li>
     <li class="file">
     <a href="app/views/maps/_form_html_haml.html">_form.html.haml</a>
@@ -78,6 +115,9 @@
   </li>
     <li class="file">
     <a href="app/views/maps/show_html_haml.html">show.html.haml</a>
+  </li>
+    <li class="file">
+    <a href="lib/tasks/cucumber_rake.html">cucumber.rake</a>
   </li>
   
 </ul>
@@ -141,6 +181,26 @@
 <ul>
 
   <li class="method">
+    <a href="Encounter.html#method-c-adjust_party_level">::adjust_party_level</a>
+    &mdash;
+    <span class="container">Encounter</span>
+
+  <li class="method">
+    <a href="Encounter.html#method-c-calculateCharacters">::calculateCharacters</a>
+    &mdash;
+    <span class="container">Encounter</span>
+
+  <li class="method">
+    <a href="Encounter.html#method-c-calculateExperienceReward">::calculateExperienceReward</a>
+    &mdash;
+    <span class="container">Encounter</span>
+
+  <li class="method">
+    <a href="Encounter.html#method-c-experience_reward">::experience_reward</a>
+    &mdash;
+    <span class="container">Encounter</span>
+
+  <li class="method">
     <a href="MapGenerator.html#method-c-generateCave">::generateCave</a>
     &mdash;
     <span class="container">MapGenerator</span>
@@ -171,6 +231,11 @@
     <span class="container">DungeonGenerator</span>
 
   <li class="method">
+    <a href="ApplicationController.html#method-i-adventure_params">#adventure_params</a>
+    &mdash;
+    <span class="container">ApplicationController</span>
+
+  <li class="method">
     <a href="NatureMap.html#method-i-countNeighboringType">#countNeighboringType</a>
     &mdash;
     <span class="container">NatureMap</span>
@@ -179,6 +244,11 @@
     <a href="AdventuresController.html#method-i-create">#create</a>
     &mdash;
     <span class="container">AdventuresController</span>
+
+  <li class="method">
+    <a href="EncountersController.html#method-i-create">#create</a>
+    &mdash;
+    <span class="container">EncountersController</span>
 
   <li class="method">
     <a href="MapsController.html#method-i-create">#create</a>
@@ -194,6 +264,11 @@
     <a href="MapsController.html#method-i-destroy">#destroy</a>
     &mdash;
     <span class="container">MapsController</span>
+
+  <li class="method">
+    <a href="ApplicationController.html#method-i-encounter_params">#encounter_params</a>
+    &mdash;
+    <span class="container">ApplicationController</span>
 
   <li class="method">
     <a href="NatureMap.html#method-i-generateCave">#generateCave</a>
@@ -231,9 +306,19 @@
     <span class="container">BaseMap</span>
 
   <li class="method">
+    <a href="ApplicationController.html#method-i-map_params">#map_params</a>
+    &mdash;
+    <span class="container">ApplicationController</span>
+
+  <li class="method">
     <a href="AdventuresController.html#method-i-new">#new</a>
     &mdash;
     <span class="container">AdventuresController</span>
+
+  <li class="method">
+    <a href="EncountersController.html#method-i-new">#new</a>
+    &mdash;
+    <span class="container">EncountersController</span>
 
   <li class="method">
     <a href="MapsController.html#method-i-new">#new</a>
@@ -249,6 +334,11 @@
     <a href="AdventuresController.html#method-i-show">#show</a>
     &mdash;
     <span class="container">AdventuresController</span>
+
+  <li class="method">
+    <a href="EncountersController.html#method-i-show">#show</a>
+    &mdash;
+    <span class="container">EncountersController</span>
 
   <li class="method">
     <a href="MapsController.html#method-i-show">#show</a>

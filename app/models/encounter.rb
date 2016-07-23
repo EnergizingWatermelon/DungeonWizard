@@ -2,13 +2,22 @@
 class Encounter < ActiveRecord::Base
     has_and_belongs_to_many :characters
     
+    
+    # Calculated experience reward for adjusted party size
+    # ==== Attributes
+    # * +party_level+ - Average level of party members
+    # * +party_size+ - Number of party members
+    # * +multiplier+ - Optional multiplier for experience scaling.
     def self.calculateExperienceReward(party_level, party_size, multiplier = 1.0)
          return multiplier * experience_reward( adjust_party_level(party_level, party_size) )
     end
     
     
-  # Returns the appropriate experience reward for a given challenge rating
-  protected
+    # Returns the appropriate experience reward for a given challenge rating
+    # 
+    # ==== Attributes
+    # * +challenge_rating+ - Challenge Rating to determine experience for
+    protected
     def self.experience_reward(challenge_rating)
         experience={0 => 0,
                     1 => 400,
@@ -51,6 +60,12 @@ class Encounter < ActiveRecord::Base
     end
     
   # Adjusts average party level based on party size, per Pathfinder's suggestion
+  #
+  # ==== Attributes
+  # * +party_level+ - Average level of party members
+  # * +party_size+  - Number of party members
+  # 
+  # returns recommended party_level
     def self.adjust_party_level(party_level, party_size)
         if party_size.to_i > 6
             party_level = party_level + 1
@@ -60,21 +75,28 @@ class Encounter < ActiveRecord::Base
         return party_level
     end
     
-    def self.calculateCharacters(xp, climate, terrain)
-        sum = 0
+    # Generates encounter appropriate characters
+    #
+    # ==== Attributes
+    # * +xp_total+ - desired experience total
+    # * +climate+  - desired climate
+    # * +terrain+  - desired terrain
+    #
+    # Returns an array of Characters for the Encounter
+    def self.calculateCharacters(xp_total, climate, terrain)
+        xp_sum = 0
         characters = Array.new
         #Gather a collection of characters that can spawn in this area and whose CR will not exceed the total value
-        while sum < xp
-                options = Character.where("xp <= ? AND terrain == ?", xp - sum, terrain)
+        while xp_sum < xp_total
+                options = Character.where("xp <= ? AND terrain == ?", xp_total - xp_sum, terrain)
             unless(climate == 'Any')
                 options = options.select { |a| a.climate == climate || a.climate == 'Any' }
-                #options = options.where("climate == ? || climate == Any", climate)
             end
             if options.empty?
                 return characters
             end
             character = options.sample
-            sum += character.xp
+            xp_sum += character.xp
             characters << character
         end 
         return characters.sort{ |x,y| x.xp <=> y.xp }
