@@ -97,3 +97,6 @@ p {
     margin-left: 0.5em;
 }
 
+#characterPanel {
+    width: 256px;
+}
