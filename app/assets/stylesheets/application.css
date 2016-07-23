@@ -97,14 +97,3 @@ p {
     margin-left: 0.5em;
 }
 
-#characterPanel {
-    background-color: #485abf;
-    border: 2px solid;
-    width: 372px;
-}
-
-#encounterPanel {
-    background-color: blue;
-    border: 5px solid;
-    width: 1150px;
-}

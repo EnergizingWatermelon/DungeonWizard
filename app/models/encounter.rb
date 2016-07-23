@@ -77,6 +77,7 @@ class Encounter < ActiveRecord::Base
             sum += character.xp
             characters << character
         end 
-        return characters
+        return characters.sort{ |x,y| x.xp <=> y.xp }
     end
+    
 end
