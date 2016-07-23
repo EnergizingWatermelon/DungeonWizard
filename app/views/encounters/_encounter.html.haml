@@ -1,0 +1,11 @@
+- #This file is 'app/views/encounters/_encounter.html.haml'
+%div{:class => "panel panel-default", :id => "encounterPanel"}
+  <div class = "panel-heading" id = "encounterHeading"><span class = "badge" id = "xpBadge">#{encounter.xp} XP</span></div>
+  %div{:class => ".col-sm-4"}
+    - if encounter.characters.empty?
+      %div{:class =>"panel-body"}
+        No characters were found that meet your requirements.
+    -else
+      - encounter.characters.each do |character|
+        - unless character.nil?
+          = render character

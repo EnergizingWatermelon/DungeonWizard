@@ -59,10 +59,22 @@ tr:hover {background-color: #fff2cc;}
    
 }
 
-.characterBody{
+.characterBody {
      border-right: 1px solid #663300;
      border-left: 1px solid #663300;
      border-top: 1px solid #663300;
+}
+
+.characterRow {
+    width: 372px;
+}
+.characterHeader{
+    vertical-align: bottom;
+    background-color: #485abf;
+    color: #dcd29f;
+    height: 31px;
+    border-right: 1px solid #663300;
+    border-left: 1px solid #663300;
 }
 
 .characterCol{
@@ -83,4 +95,8 @@ p {
 
 .btn {
     margin-left: 0.5em;
+}
+
+#characterPanel {
+    width: 256px;
 }

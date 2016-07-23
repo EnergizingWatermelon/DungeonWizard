@@ -1,22 +1,27 @@
+- #This file is /app/views/encounters/_form.html.haml
 %div{:class => "container", :id => "parmsContainer"}
-  = form_tag maps_path do
+  = form_tag encounters_path do
     %div{:class => "row"}
       %div{:class => "col-md-6"}
         %div{:class => "form-group"}
-          = label :map, :name, 'Name'
-          = text_field :map, :name, {:class => "form-control", :id => "Location Name",
-                 :name => "map[name]", :value => "Frostfall Forest"}
+          %label{:for => "PlayerCount"}Player Count
+          %input{:type => "number", :class => "form-control", :id => "PlayerCount",
+                 :name => "encounter[party_size]", :value => "4", :min => "1"}
+        %div{:class => "form-group"}
+          %label{:for => "PlayerLevel"}Player Level
+          %input{:type => "number", :class => "form-control", :id => "PlayerLevel",
+                 :name => "encounter[cr]", :value => "1", :min => "1"}
         %div{:class => "form-group"}
           = label :map, :climate, 'Climate'
           = text_field :map, :climate, {:class => "form-control typeahead", :id => "Climate",
-                 :name => "map[climate]", :value => "Any",
+                 :name => "encounter[climate]", :value => "Any",
                  'data-query' => "/characters", 'data-name' => "climate", 'data-parms' => "#parmsContainer"}
         %div{:class => "form-group"}
           = label :map, :terrain, 'Terrain'
           = text_field :map, :terrain, {:class => "form-control typeahead", :id => "Terrain",
-                 :name => "map[terrain]", :value => "Forest",
+                 :name => "encounter[terrain]", :value => "Forest",
                  'data-query' => "/characters", 'data-name' => "terrain", 'data-parms' => "#parmsContainer"}
-        %div{:class => "row"}
+      %div{:class => "row"}
         %div{:class => "col-md-12"}
           = submit_tag 'Generate!', {:class => "btn btn-success pull-right"}
-          = link_to 'Reset', maps_path, {:class => "btn btn-default pull-right"}
+          = link_to 'Reset', encounters_path, {:class => "btn btn-default pull-right"}

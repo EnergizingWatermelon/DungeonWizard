@@ -28,6 +28,20 @@ class CreateCharacters < ActiveRecord::Migration
       t.text :description
     end
     
+     create_table :encounters do |e|
+      e.text :details
+      e.integer :party_size
+      e.float :cr
+      e.integer :xp
+      e.string :climate
+      e.string :terrain
+      e.references :adventure, index: true, foreign_key: true
+      e.timestamps null: false
+    end
     
+    create_table :characters_encounters, id: false do |ec|
+      ec.belongs_to :character, index: true
+      ec.belongs_to :encounter, index: true
+    end
   end
 end

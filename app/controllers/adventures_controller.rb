@@ -18,6 +18,25 @@ class AdventuresController < ApplicationController
         @adventure = Adventure.new(adventure_params)
         if (@adventure.save)
             @adventure.map = Map.new(map_params)
+            num_encounters = 5 + rand(5)
+            xp = Encounter.calculateExperienceReward(adventure_params[:cr], adventure_params[:party_size])
+            num_encounters.times do |i|
+                encounter = Encounter.new(adv_encounter_params)
+                encounter.xp = xp
+                encounter.characters =  Encounter.calculateCharacters(  xp, 
+                                                                        adv_encounter_params[:climate], 
+                                                                        adv_encounter_params[:terrain])
+                @adventure.encounters << encounter
+                
+=begin
+                @adventure.encounters[i].xp = xp
+                @adventure.encounters[i].characters = Encounter.calculateCharacters(xp, 
+                                                                                    adv_encounter_params[:climate], 
+                                                                                    adv_encounter_params[:terrain])
+=end
+            end
+            
+            #Adventure.calculateEncounters(@adventure, adv_encounter_params)
             if(@adventure.save)
                 redirect_to @adventure
             else
@@ -33,18 +52,17 @@ class AdventuresController < ApplicationController
         @adventure = Adventure.find(params[:id])
         @grid = MapGenerator.generateMap(@adventure.map.seed, @adventure.map.terrain)
     end
-
-  # Validates all necessary parameters for Adventures
-  private
-    def adventure_params
-      params.require(:adventure).permit(:title, :plot, :party_size, :cr)
+    
+    private
+    def adv_encounter_params
+        adv_parms = params[:adventure]
+        map_parms = params[:map]
+        enc_params = Hash.new
+        enc_params[:party_size] = adv_parms[:party_size]
+        enc_params[:cr] = adv_parms[:cr]
+        enc_params[:climate] = map_parms[:climate]
+        enc_params[:terrain] = map_parms[:terrain]
+        return enc_params
     end
     
-  # Validates all necessary parameters for Maps
-  private
-    def map_params
-      #Merge a new random seed into the initial params
-      params.require(:map).permit(:name, :seed, :climate, :terrain)
-                          .merge({:seed => Random.new_seed % 2147483647})
-    end
 end

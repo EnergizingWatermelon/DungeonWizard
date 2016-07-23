@@ -1,51 +1,67 @@
 -# This file is /app/views/characters/_character.html.haml
 - #This file is /app/views/maps/_map.html.haml
-%div{:class => "row"}
-  %div{:class => "col-sm-4"}
-    %h2= character.name
+%div{:class => "panel panel-primary", :id => "characterPanel"}
+  %div{:class => "panel-heading", :id => "characterPanelHeading"}= character.name
+  %div{:class => ".col-sm-4"}
     %h4= character.monster_type
     %table{:class => "characterBody"}
       %tbody
-        %tr
-          %td Alignment: 
+        %tr{:class => "characterRow"}
+          %th{:class => "characterHeader"} Alignment
+          %th{:class => "characterHeader"} Monster Type
+        %tr{:class => "characterRow"}
           %td= character.alignment
-          %td{:class => "characterCol" } XP:
-          %td= character.xp
-          %td{:class => "characterCol"} CR:
-          %td= character.cr
-        %tr
-          %td Initiative:
+          %td= character.monster_type
+        %tr{:class => "characterRow"}
+          %th{:class => "characterHeader"} XP
+          %th{:class => "characterHeader"} CR
+        %tr{:class => "characterRow"}
+          %td{:class => "characterCol"}= character.xp
+          %td{:class => "characterCol"}= character.cr
+        %tr{:class => "characterRow"}
+          %th{:class => "characterHeader"} Initiative
+          %th{:class => "characterHeader"} Speed
+          %td{:class => "characterHeader"} Hit Points
+        %tr{:class => "characterRow"}
           %td= character.initiative
-          %td{:class => "characterCol" } Speed:
-          %td= character.speed
-          %td{:class => "characterCol"} Hit Points:
-          %td= character.hp
-        %tr
-          %td AC:
+          %td{:class => "characterCol"}= character.speed
+          %td{:class => "characterCol"}= character.hp
+        %tr{:class => "characterRow"}
+          %th{:class => "characterHeader"} AC
+          %th{:class => "characterHeader"} Touch AC
+          %th{:class => "characterHeader"} Flat Footed AC
+        %tr{:class => "characterRow"}
           %td= character.ac
-          %td{:class => "characterCol"} Touch AC:
-          %td= character.ac_touch
-          %td{:class => "characterCol"} Flat Footed AC:
-          %td= character.ac_flat
-        %tr
-          %td Fort Save:
+          %td{:class => "characterCol"}= character.ac_touch
+          %td{:class => "characterCol"}= character.ac_flat
+        %tr{:class => "characterRow"}
+          %th{:class => "characterHeader"} Fortitude Save
+          %th{:class => "characterHeader"} Reflex Save
+          %th{:class => "characterHeader"} Will Save
+        %tr{:class => "characterRow"}
           %td= character.fort_save
-          %td{:class => "characterCol"} Ref Save:
-          %td= character.ref_save
-          %td{:class => "characterCol"} Will Save:
-          %td= character.will_save
-        %tr
-          %td Strength:
-          %td= character.str
-          %td{:class => "characterCol"}Dexterity:
-          %td= character.dex
-          %td{:class => "characterCol"}Constitution:
-          %td= character.con
-        %tr
-          %td Intelligence:
+          %td{:class => "characterCol"}= character.ref_save
+          %td{:class => "characterCol"}= character.will_save
+        %tr{:class => "characterRow"}
+          %th{:class => "characterHeader"} Strength
+          %th{:class => "characterHeader"} Dexterity
+          %th{:class => "characterHeader"} Constitution
+        %tr{:class => "characterRow"}
+          %td{:class => "characterCol"}= character.str
+          %td{:class => "characterCol"}= character.dex
+          %td{:class => "characterCol"}= character.con
+        %tr{:class => "characterRow"}
+          %th{:class => "characterHeader"} Intelligence
+          %th{:class => "characterHeader"} Wisdom
+          %th{:class => "characterHeader"} Charisma
+        %tr{:class => "characterRow"}
           %td= character.int
-          %td{:class => "characterCol"}Wisdom:
-          %td= character.wis
-          %td{:class => "characterCol"}Charisma:
-          %td= character.cha
+          %td{:class => "characterCol"}=character.wis
+          %td{:class => "characterCol"}= character.cha
+        %tr{:class => "characterRow"}
+          %th{:class => "characterHeader"}Organization
+          %th{:class => "characterHeader"}Treasure
+        %tr{:class => "characterRow"}
+          %td= character.organization
+          %td= character.treasure
     %p= character.description
