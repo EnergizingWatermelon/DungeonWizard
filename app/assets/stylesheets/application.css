@@ -103,7 +103,8 @@ p {
     width: 372px;
 }
 
-#encounterTable {
+#encounterPanel {
     background-color: blue;
     border: 5px solid;
+    width: 1150px;
 }
