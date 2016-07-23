@@ -65,9 +65,11 @@ class Encounter < ActiveRecord::Base
         characters = Array.new
         #Gather a collection of characters that can spawn in this area and whose CR will not exceed the total value
         while sum < xp
-            options = Character.where("cr <= ?", xp - sum)
-                                  .where("climate == ?", climate)
-                                  .where("terrain == ?", terrain)
+            if(climate == 'Any')
+                options = Character.where("xp <= ? AND terrain == ?", xp - sum, terrain)
+            else
+                options = Character.where("xp <= ? AND terrain == ? AND climate == ?", xp - sum, terrain, climate)
+            end
             if options.empty?
                 return characters
             end
