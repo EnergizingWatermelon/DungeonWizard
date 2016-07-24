@@ -10,7 +10,7 @@
   %li= @adventure.map.seed
 -# Renders _map.html.haml from the maps directory
 =render @adventure.map
+%div{:class => "panel-group", :id => "encounterPanelGroup"}
 - @adventure.encounters.each do |encounter|
-  -unless encounter.nil?
-    =render encounter
+  =render encounter
   

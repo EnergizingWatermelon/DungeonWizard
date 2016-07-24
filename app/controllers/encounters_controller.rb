@@ -26,7 +26,7 @@ class EncountersController < ApplicationController
         @encounter = Encounter.find(params[:id])
     end
 
-    # Currently displays all characters
+    # Displays encounter generation form
     def index
     end
     

@@ -5,16 +5,16 @@
         %div{:class => "form-group"}
           = label :map, :name, 'Name'
           = text_field :map, :name, {:class => "form-control", :id => "Location Name",
-                 :name => "map[name]", :placeholder => "Frostfall Forest"}
+                 :name => "map[name]", :value => "Frostfall Forest"}
         %div{:class => "form-group"}
           = label :map, :climate, 'Climate'
           = text_field :map, :climate, {:class => "form-control typeahead", :id => "Climate",
-                 :name => "map[climate]", :placeholder => "Temperate",
+                 :name => "map[climate]", :value => "Any",
                  'data-query' => "/characters", 'data-name' => "climate", 'data-parms' => "#parmsContainer"}
         %div{:class => "form-group"}
           = label :map, :terrain, 'Terrain'
           = text_field :map, :terrain, {:class => "form-control typeahead", :id => "Terrain",
-                 :name => "map[terrain]", :placeholder => "Forest",
+                 :name => "map[terrain]", :value => "Forest",
                  'data-query' => "/characters", 'data-name' => "terrain", 'data-parms' => "#parmsContainer"}
         %div{:class => "row"}
         %div{:class => "col-md-12"}

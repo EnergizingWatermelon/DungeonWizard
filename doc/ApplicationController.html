@@ -64,7 +64,21 @@
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-adventure_params">#adventure_params</a>
+    
+    <li ><a href="#method-i-encounter_params">#encounter_params</a>
+    
+    <li ><a href="#method-i-map_params">#map_params</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -92,6 +106,115 @@
     
 
     
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Protected Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-adventure_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adventure_params</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates all necessary parameters for Adventures</p>
+          
+          
+
+          
+          <div class="method-source-code" id="adventure_params-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">adventure_params</span>
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:adventure</span>).<span class="ruby-identifier">permit</span>(<span class="ruby-value">:title</span>, <span class="ruby-value">:plot</span>, <span class="ruby-value">:party_size</span>, <span class="ruby-value">:cr</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-encounter_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">encounter_params</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates all necessary parameters for Encounters</p>
+          
+          
+
+          
+          <div class="method-source-code" id="encounter_params-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">encounter_params</span>
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:encounter</span>).<span class="ruby-identifier">permit</span>(<span class="ruby-value">:details</span>, <span class="ruby-value">:party_size</span>, <span class="ruby-value">:cr</span>, <span class="ruby-value">:climate</span>, <span class="ruby-value">:terrain</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-map_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">map_params</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates all necessary parameters for Maps</p>
+          
+          
+
+          
+          <div class="method-source-code" id="map_params-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">map_params</span>
+  <span class="ruby-comment">#Merge a new random seed into the initial params</span>
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:map</span>).<span class="ruby-identifier">permit</span>(<span class="ruby-value">:name</span>, <span class="ruby-value">:seed</span>, <span class="ruby-value">:climate</span>, <span class="ruby-value">:terrain</span>)
+                      .<span class="ruby-identifier">merge</span>({<span class="ruby-value">:seed</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new_seed</span> <span class="ruby-operator">%</span> <span class="ruby-value">2147483647</span>})
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

@@ -6,6 +6,8 @@ class BaseMap
 
 	# Grid that is used for all maps being generated
 	attr_reader :grid
+	attr_reader :height
+	attr_reader :width
 
 	# Constructor
 	def initialize(height = 24, width = 32)

@@ -2,70 +2,104 @@
 class Encounter < ActiveRecord::Base
     has_and_belongs_to_many :characters
     
+    
+    # Calculated experience reward for adjusted party size
+    # ==== Attributes
+    # * +party_level+ - Average level of party members
+    # * +party_size+ - Number of party members
+    # * +multiplier+ - Optional multiplier for experience scaling.
     def self.calculateExperienceReward(party_level, party_size, multiplier = 1.0)
          return multiplier * experience_reward( adjust_party_level(party_level, party_size) )
     end
     
     
-  # Returns the appropriate experience reward for a given challenge rating
-  protected
+    # Returns the appropriate experience reward for a given challenge rating
+    # 
+    # ==== Attributes
+    # * +challenge_rating+ - Challenge Rating to determine experience for
+    protected
     def self.experience_reward(challenge_rating)
-        experience={0.125 => 50,
-                    0.166 => 65,
-                    0.25 => 100,
-                    0.333 => 135,
-                    0.5 => 200,
-                    1.0 => 400,
-                    2.0 => 600,
-                    3.0 => 800,
-                    4.0 => 1200,
-                    5.0 => 1600,
-                    6.0 => 2400,
-                    7.0 => 3200,
-                    8.0 => 4800,
-                    9.0 => 6400,
-                    10.0 => 9600,
-                    11.0 => 12800,
-                    12.0 => 19200,
-                    13.0 => 25600,
-                    14.0 => 38400,
-                    15.0 => 51200,
-                    16.0 => 76800,
-                    17.0 => 102400,
-                    18.0 => 153600,
-                    19.0 => 204800,
-                    20.0 => 307200,
-                    21.0 => 409600,
-                    22.0 => 614400,
-                    23.0 => 819200,
-                    24.0 => 1228800,
-                    25.0 => 1638400
+        experience={0 => 0,
+                    1 => 400,
+                    2 => 600,
+                    3 => 800,
+                    4 => 1200,
+                    5 => 1600,
+                    6 => 2400,
+                    7 => 3200,
+                    8 => 4800,
+                    9 => 6400,
+                    10 => 9600,
+                    11 => 12800,
+                    12 => 19200,
+                    13 => 25600,
+                    14 => 38400,
+                    15 => 51200,
+                    16 => 76800,
+                    17 => 102400,
+                    18 => 153600,
+                    19 => 204800,
+                    20 => 307200,
+                    21 => 409600,
+                    22 => 614400,
+                    23 => 819200,
+                    24 => 1228800,
+                    25 => 1638400
         }
-        return experience[challenge_rating] || 0
+=begin
+        #lerp experience rewards
+        xp_amount = 0
+        cr_floor = challenge_rating.to_f.floor
+        cr_ceil = challenge_rating.to_f.ceil
+        if(cr_ceil <= 25 && cr_floor >= 0)
+            xp_amount = experience[cr_floor] +(experience[cr_ceil] - experience[cr_floor]) *  ((challenge_rating.to_f - cr_floor)/(cr_ceil - cr_floor))
+        end
+        return xp_amount
+=end
+        return experience[challenge_rating.to_i]
     end
     
   # Adjusts average party level based on party size, per Pathfinder's suggestion
+  #
+  # ==== Attributes
+  # * +party_level+ - Average level of party members
+  # * +party_size+  - Number of party members
+  # 
+  # returns recommended party_level
     def self.adjust_party_level(party_level, party_size)
         if party_size.to_i > 6
-            party_level += 1
+            party_level = party_level + 1
         elsif party_size.to_i < 4
-            party_level -= 1
+            party_level = party_level - 1
         end
         return party_level
     end
     
-    def self.calculateCharacters(xp, climate, terrain)
-        sum = 0
-       characters = Array.new
+    # Generates encounter appropriate characters
+    #
+    # ==== Attributes
+    # * +xp_total+ - desired experience total
+    # * +climate+  - desired climate
+    # * +terrain+  - desired terrain
+    #
+    # Returns an array of Characters for the Encounter
+    def self.calculateCharacters(xp_total, climate, terrain)
+        xp_sum = 0
+        characters = Array.new
         #Gather a collection of characters that can spawn in this area and whose CR will not exceed the total value
-        while sum < xp
-            options = Character.where("cr <= ?", xp - sum)
-                                  .where("climate == ?", climate)
-                                  .where("terrain == ?", terrain)
+        while xp_sum < xp_total
+                options = Character.where("xp <= ? AND terrain == ?", xp_total - xp_sum, terrain)
+            unless(climate == 'Any')
+                options = options.select { |a| a.climate == climate || a.climate == 'Any' }
+            end
+            if options.empty?
+                return characters
+            end
             character = options.sample
-            sum += character.xp
+            xp_sum += character.xp
             characters << character
         end 
-        return characters
+        return characters.sort{ |x,y| x.xp <=> y.xp }
     end
+    
 end

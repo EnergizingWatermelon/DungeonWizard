@@ -70,7 +70,13 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-create">#create</a>
+    
     <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-new">#new</a>
+    
+    <li ><a href="#method-i-show">#show</a>
     
   </ul>
 </div>
@@ -108,6 +114,50 @@
        </header>
 
     
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks receives parameters and attempts to create a new <a
+href="Encounter.html">Encounter</a> If the encounter fails to save to the
+database for whatever reason, the user is redirected to the index. TODO:
+Improve this substantially. This is just a proof of concept.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/encounters_controller.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+    <span class="ruby-ivar">@encounter</span> = <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">encounter_params</span>)
+    <span class="ruby-ivar">@encounter</span>.<span class="ruby-identifier">xp</span> = <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">calculateExperienceReward</span>(<span class="ruby-ivar">@encounter</span>.<span class="ruby-identifier">cr</span>, <span class="ruby-ivar">@encounter</span>.<span class="ruby-identifier">party_size</span>)
+    <span class="ruby-comment">#TODO: Add additional encounter types</span>
+    <span class="ruby-ivar">@encounter</span>.<span class="ruby-identifier">characters</span> = <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">calculateCharacters</span>(<span class="ruby-ivar">@encounter</span>.<span class="ruby-identifier">xp</span>, <span class="ruby-ivar">@encounter</span>.<span class="ruby-identifier">climate</span>, <span class="ruby-ivar">@encounter</span>.<span class="ruby-identifier">terrain</span>)
+    <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@encounter</span>.<span class="ruby-identifier">save</span>)
+        <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@encounter</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&#39;/encounters&#39;</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-index" class="method-detail ">
         
         <div class="method-heading">
@@ -121,15 +171,81 @@
 
         <div class="method-description">
           
-          <p>Currently displays all characters</p>
+          <p>Displays encounter generation form</p>
           
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/encounters_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/encounters_controller.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-        <span class="ruby-ivar">@characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Encounter.html">Encounter</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/encounters_controller.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@encounter</span> = <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Displays the <a href="Encounter.html">Encounter</a> specified in the id
+parameter</p>
+          
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/encounters_controller.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+    <span class="ruby-ivar">@encounter</span> = <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
           </div>
           

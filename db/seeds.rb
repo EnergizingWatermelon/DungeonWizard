@@ -21,10 +21,13 @@
 #    terrain_des
 #    ]
 
-monsters = [{:name => 'Kobold', :xp => '100', :cr => '0.25', :climate => 'Temperate', :terrain => 'Forest'},
+
+
+monsters = [{:name => 'Kobold', :xp => '100', :cr => '0.25', :initiative => '1', :hp => '5', :ac => '15', :ac_touch => '12', :ac_flat => '14', :fort_save => '2', :ref_save => '1', :will_save => '-1', :str => '9', :dex => '13', :con => '10', :int => '10', :wis => '9', :cha => '8', :monster_type => 'humanoid', :alignment => 'LE', :organization => 'solitary, gang, nest', :climate => 'Temperate', :terrain => 'Forest'},
             {:name => 'Giant Scorpion', :xp => '800', :cr => '3', :climate => 'Warm', :terrain => 'Desert'},
             {:name => 'Yeti', :xp => '1200', :cr => '4', :climate => 'Cold', :terrain => 'Mountains'},
             {:name => 'Dire Shark', :xp => '600', :cr => '2', :climate => 'Any', :terrain => 'Ocean'},
+            {:name => 'Killer Whale', :xp => '100', :cr => '0.25', :climate => 'Cold', :terrain => 'Ocean'},
             {:name => 'Gorgon', :xp => '4800', :cr => '8', :climate => 'Temperate', :terrain => 'Plains'},
             {:name => 'Dracolisk', :xp => '3200', :cr => '7', :climate => 'Temperate', :terrain => 'Swamp'},
             {:name => 'Dark Stalker', :xp => '1200', :cr => '4', :climate => 'Cold', :terrain => 'Underground'},
