@@ -3,7 +3,8 @@
 
 # Generates a map
 class DungeonGenerator
-
+	attr_reader :height
+	attr_reader :width
 # Constructor
 #
 # ==== Attributes

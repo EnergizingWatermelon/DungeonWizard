@@ -58,7 +58,6 @@ module MapGenerator
 				cy = width-1
 			end
 		end
-		
 		return grid
 	end
 
