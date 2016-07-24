@@ -51,6 +51,15 @@
   </div>
 
   
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-render+-40adventure.map">render @adventure.map</a>
+    <li><a href="#label-render+encounter">render encounter</a>
+  </ul>
+</div>
+
 
   <div id="project-metadata">
     <div id="fileindex-section" class="nav-section">
@@ -59,6 +68,24 @@
   <ul class="link-list">
   
     <li><a href="../../../app/assets/images/README_md.html">README</a>
+  
+    <li><a href="../../../app/assets/javascripts/adventure_coffee.html">adventure.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/application_js.html">application.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/encounter_coffee.html">encounter.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/typeAheadModule_js.html">typeAheadModule.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/typeaheadinit_js.html">typeaheadinit.js</a>
+  
+    <li><a href="../../../app/assets/stylesheets/adventure_css.html">adventure.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/adventure_scss.html">adventure.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/application_css.html">application.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/encounter_scss.html">encounter.scss</a>
   
     <li><a href="../../../app/views/adventures/_adventure_html_haml.html">_adventure.html.haml</a>
   
@@ -78,7 +105,13 @@
   
     <li><a href="../../../app/views/characters/_character_html_haml.html">_character.html.haml</a>
   
+    <li><a href="../../../app/views/encounters/_encounter_html_haml.html">_encounter.html.haml</a>
+  
+    <li><a href="../../../app/views/encounters/_form_html_haml.html">_form.html.haml</a>
+  
     <li><a href="../../../app/views/encounters/index_html_haml.html">index.html.haml</a>
+  
+    <li><a href="../../../app/views/encounters/show_html_haml.html">show.html.haml</a>
   
     <li><a href="../../../app/views/maps/_form_html_haml.html">_form.html.haml</a>
   
@@ -91,6 +124,8 @@
     <li><a href="../../../app/views/maps/new_html_haml.html">new.html.haml</a>
   
     <li><a href="../../../app/views/maps/show_html_haml.html">show.html.haml</a>
+  
+    <li><a href="../../../lib/tasks/cucumber_rake.html">cucumber.rake</a>
   
   </ul>
 </div>
@@ -114,6 +149,13 @@
 <p>-# Renders _map.html.haml from the maps directory</p>
 
 <h1 id="label-render+-40adventure.map">render @adventure.map<span><a href="#label-render+-40adventure.map">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>%div{:class =&gt; “panel-group”, :id =&gt; “encounterPanelGroup”}</p>
+<ul><li>
+<p>@adventure.encounters.each do |encounter|</p>
+
+<h1 id="label-render+encounter">render encounter<span><a href="#label-render+encounter">&para;</a> <a href="#top">&uarr;</a></span></h1>
+</li></ul>
 </main>
 
 
