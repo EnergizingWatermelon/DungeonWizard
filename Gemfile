@@ -45,6 +45,9 @@ group :development, :test do
 
   # Use SQLite
   gem 'sqlite3'
+  
+  # Use Railroady to generate UML documentation
+  gem 'railroady'
 end
 
 group :development do
@@ -64,7 +67,6 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
-  gem 'railroady'
 end
 
 group :production do

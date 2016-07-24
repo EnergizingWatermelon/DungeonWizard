@@ -123,7 +123,7 @@ end
 #To do: create a way to determine a map is on the page
 Then(/^I should see a Map$/) do
   if page.respond_to? :should
-	  page.should find_by_id('map')
+	  page.find_by_id('map')
   else
     assert page.find_by_id('map')
   end

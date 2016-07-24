@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20160708023924) do
 
   create_table "abilities", force: :cascade do |t|
     t.string   "name"
-    t.string   "category"
+    t.string   "type"
     t.text     "description"
     t.integer  "character_id"
     t.datetime "created_at",   null: false
@@ -41,27 +41,10 @@ ActiveRecord::Schema.define(version: 20160708023924) do
     t.text   "terrain"
   end
 
-  create_table "characters_encounters", id: false, force: :cascade do |t|
-    t.integer "character_id"
-    t.integer "encounter_id"
-  end
-
-  add_index "characters_encounters", ["character_id"], name: "index_characters_encounters_on_character_id"
-  add_index "characters_encounters", ["encounter_id"], name: "index_characters_encounters_on_encounter_id"
-
   create_table "encounters", force: :cascade do |t|
-    t.text     "details"
-    t.integer  "party_size"
-    t.float    "cr"
-    t.integer  "xp"
-    t.string   "climate"
-    t.string   "terrain"
-    t.integer  "adventure_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "encounters", ["adventure_id"], name: "index_encounters_on_adventure_id"
 
   create_table "maps", force: :cascade do |t|
     t.string  "name"
