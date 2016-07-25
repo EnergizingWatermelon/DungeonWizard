@@ -5,7 +5,7 @@ describe NatureMap do
         height = 32
         width = 24
         map = NatureMap.new(height,width)
-		#map.generateCave
+		map.generateCave
         expect(map.grid).to_not eq([])
     end
     it 'should have correct height and width' do
