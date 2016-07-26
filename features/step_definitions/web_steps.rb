@@ -121,7 +121,7 @@ Then (/^(?:|I )should see \/([^\/]*)\/$/) do |regexp|
 end
 
 #To do: create a way to determine a map is on the page
-Then(/^I should see a Map$/) do
+Then (/^(?:|I )should see a Map$/) do
   if page.respond_to? :should
 	  page.find_by_id('map')
   else
@@ -129,12 +129,31 @@ Then(/^I should see a Map$/) do
   end
 end
 
-#To do: create a way to determine an encounter is on the page
-Then(/^I should see an Encounter$/) do
-if page.respond_to? :should
+#Create a way to determine an encounter is on the page
+Then (/^(?:|I )should see an Encounter$/) do
+  if page.respond_to? :should
 	  page.find_by_id('encounterPanel')
   else
     assert page.find_by_id('encounterPanel')
+  end
+end
+
+Then (/^(?:|I )should see a CR of "([^"]*)"$/) do |cr|
+  if page.respond_to? :should
+	  page.find_by_id('xpBadge').should have_text(cr)
+  else
+    assert page.find_by_id('xpBadge').should have_text(cr)
+  end
+end
+
+Then (/^(?:|I )should see an Adventure/) do
+  if page.respond_to? :should
+	  page.find_by_id('encounterPanelGroup')
+	  page.find_by_id('map')
+  else
+    assert page.find_by_id('encounterPanelGroup')
+    assert page.find_by_id('map')
+  end
 end
 
 Then (/^(?:|I )should not see "([^"]*)"$/) do |text|

@@ -6,5 +6,4 @@ Scenario: Generate a simple adventure
 	Then I should be on the Adventure Generator page
 	When I press "Generate!"
 	Then I should be on an adventure page
-	And I should see a Map
-	And I should see an Encounter
+	And I should see an Adventure
