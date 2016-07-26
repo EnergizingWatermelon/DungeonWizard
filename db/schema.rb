@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20160708023924) do
 
   create_table "abilities", force: :cascade do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "category"
     t.text     "description"
     t.integer  "character_id"
     t.datetime "created_at",   null: false
@@ -34,17 +34,54 @@ ActiveRecord::Schema.define(version: 20160708023924) do
   end
 
   create_table "characters", force: :cascade do |t|
-    t.string "name"
-    t.string "xp"
-    t.string "cr"
-    t.text   "climate"
-    t.text   "terrain"
+    t.string  "name"
+    t.integer "xp"
+    t.float   "cr"
+    t.integer "initiative"
+    t.integer "speed"
+    t.integer "hp"
+    t.integer "ac"
+    t.integer "ac_touch"
+    t.integer "ac_flat"
+    t.integer "fort_save"
+    t.integer "ref_save"
+    t.integer "will_save"
+    t.integer "str"
+    t.integer "dex"
+    t.integer "con"
+    t.integer "int"
+    t.integer "wis"
+    t.integer "cha"
+    t.string  "monster_type"
+    t.string  "alignment"
+    t.string  "organization"
+    t.string  "climate"
+    t.string  "terrain"
+    t.string  "treasure"
+    t.text    "description"
   end
 
-  create_table "encounters", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "characters_encounters", id: false, force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "encounter_id"
   end
+
+  add_index "characters_encounters", ["character_id"], name: "index_characters_encounters_on_character_id"
+  add_index "characters_encounters", ["encounter_id"], name: "index_characters_encounters_on_encounter_id"
+
+  create_table "encounters", force: :cascade do |t|
+    t.text     "details"
+    t.integer  "party_size"
+    t.float    "cr"
+    t.integer  "xp"
+    t.string   "climate"
+    t.string   "terrain"
+    t.integer  "adventure_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "encounters", ["adventure_id"], name: "index_encounters_on_adventure_id"
 
   create_table "maps", force: :cascade do |t|
     t.string  "name"

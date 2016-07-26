@@ -131,7 +131,10 @@ end
 
 #To do: create a way to determine an encounter is on the page
 Then(/^I should see an Encounter$/) do
-#  pending # Write code here that turns the phrase above into concrete actions
+if page.respond_to? :should
+	  page.find_by_id('encounterPanel')
+  else
+    assert page.find_by_id('encounterPanel')
 end
 
 Then (/^(?:|I )should not see "([^"]*)"$/) do |text|
