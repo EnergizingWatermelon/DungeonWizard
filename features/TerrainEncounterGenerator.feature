@@ -1,0 +1,9 @@
+Feature: DM can generate an encounter with a specified terrain
+
+Scenario: Generate an encounter with a desert terrain
+	Given I am on the Encounter Generator page
+	When I fill in "Terrain" with "desert"
+	And I press "Generate!"
+	Then I should be on an encounter page
+	And I should see an Encounter
+	And I should see a "desert" terrain creature

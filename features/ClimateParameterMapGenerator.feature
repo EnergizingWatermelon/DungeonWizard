@@ -6,4 +6,4 @@ Scenario: Generate a map with an arid climate
 	And I press "Generate!"
 	Then I should be on a map page
 	And I should see a Map
-	And I should see "Arid"
+	And I should see a "Arid" terrain map

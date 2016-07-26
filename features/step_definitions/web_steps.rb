@@ -156,6 +156,42 @@ Then (/^(?:|I )should see an Adventure/) do
   end
 end
 
+#To do: create a step definition that looks for creatures of a specified terrain type
+Then (/^(?:|I )should see a "([^"]*)" terrain creature$/) do |terrain|
+  ##if page.respond_to? :should
+	##  page.find_by_id('xpBadge').should have_text(cr)
+  ##else
+  ##  assert page.find_by_id('xpBadge').should have_text(cr)
+  ##end
+end
+
+#To do: create a step definition that looks for a map of a specified terrain type
+Then (/^(?:|I )should see a "([^"]*)" terrain map/) do |terrain|
+  ##if page.respond_to? :should
+	##  page.find_by_id('xpBadge').should have_text(cr)
+  ##else
+  ##  assert page.find_by_id('xpBadge').should have_text(cr)
+  ##end
+end
+
+#To do: create a step definition that looks for creatures of a specified climate type
+Then (/^(?:|I )should see a "([^"]*)" climate creature$/) do |climate|
+  ##if page.respond_to? :should
+	##  page.find_by_id('xpBadge').should have_text(cr)
+  ##else
+  ##  assert page.find_by_id('xpBadge').should have_text(cr)
+  ##end
+end
+
+#To do: create a step definition that looks for a map of a specified climate type
+Then (/^(?:|I )should see a "([^"]*)" climate map/) do |climate|
+  ##if page.respond_to? :should
+	##  page.find_by_id('xpBadge').should have_text(cr)
+  ##else
+  ##  assert page.find_by_id('xpBadge').should have_text(cr)
+  ##end
+end
+
 Then (/^(?:|I )should not see "([^"]*)"$/) do |text|
   if page.respond_to? :should
     page.should have_no_content(text)

@@ -6,4 +6,4 @@ Scenario: Generate a map with a desert terrain
 	And I press "Generate!"
 	Then I should be on a map page
 	And I should see a Map
-	And I should see "desert"
+	And I should see a "desert" terrain map
