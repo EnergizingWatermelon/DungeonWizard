@@ -100,3 +100,13 @@ p {
 #characterPanel {
     width: 256px;
 }
+
+.en-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.en-child{
+    flex: 1 1 auto;
+    margin: 20px;
+}
