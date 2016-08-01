@@ -104,9 +104,10 @@ p {
 .en-container{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .en-child{
-    flex: 1 1 auto;
-    margin: 20px;
+    flex: none 1 auto;
+    margin: 1em;
 }
