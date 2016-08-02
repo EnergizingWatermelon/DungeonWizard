@@ -24,6 +24,7 @@
 
 
 monsters = [{:name => 'Rattata', :xp => '20', :cr => '0.05', :initiative => '0', :hp => '1', :ac => '12', :ac_touch => '12', :ac_flat => '10', :fort_save => '-1', :ref_save => '2', :will_save => '-1', :str => '6', :dex => '14', :con => '10', :int => '10', :wis => '8', :cha => '8', :monster_type => 'pocket', :alignment => 'CE', :organization => 'solitary, gang, nest', :climate => 'Any', :terrain => 'Forest'},
+            {:name => 'Zubat', :xp => '20', :cr => '0.05', :initiative => '0', :hp => '1', :ac => '12', :ac_touch => '12', :ac_flat => '10', :fort_save => '-1', :ref_save => '2', :will_save => '-1', :str => '6', :dex => '14', :con => '10', :int => '10', :wis => '8', :cha => '8', :monster_type => 'pocket', :alignment => 'CE', :organization => 'solitary, gang, nest', :climate => 'Any', :terrain => 'Dungeon'},
             {:name => 'Kobold', :xp => '100', :cr => '0.25', :initiative => '1', :hp => '5', :ac => '15', :ac_touch => '12', :ac_flat => '14', :fort_save => '2', :ref_save => '1', :will_save => '-1', :str => '9', :dex => '13', :con => '10', :int => '10', :wis => '9', :cha => '8', :monster_type => 'humanoid', :alignment => 'LE', :organization => 'solitary, gang, nest', :climate => 'Temperate', :terrain => 'Forest'},
             {:name => 'Giant Scorpion', :xp => '800', :cr => '3', :climate => 'Warm', :terrain => 'Desert'},
             {:name => 'Yeti', :xp => '1200', :cr => '4', :climate => 'Cold', :terrain => 'Mountains'},

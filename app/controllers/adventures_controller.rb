@@ -44,6 +44,7 @@ class AdventuresController < ApplicationController
     def show
         @adventure = Adventure.find(params[:id])
         @grid = MapGenerator.generateMap(@adventure.map.seed, @adventure.map.terrain)
+        @terrain_tile = Map.get_tile_name(@adventure.map.terrain)
     end
     
     private

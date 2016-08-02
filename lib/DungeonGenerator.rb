@@ -74,7 +74,7 @@ class DungeonGenerator
 			xBounds = x+rmHeight
 			yBounds = y+rmWidth
 			if(isSpaceAvailable(x,y,xBounds,yBounds))
-				addSection((x..xBounds), (y..yBounds), :room)
+				addSection((x..xBounds), (y..yBounds), :open)
 				@numberOfEncounters += 1
 			
 				#Add South Rooms
@@ -107,7 +107,7 @@ class DungeonGenerator
 	end
 
 	# Fills in a square
-	private def addSection(xRange, yRange, type = :passage)
+	private def addSection(xRange, yRange, type = :open)
 		for rx in xRange do
 			for ry in yRange do
 				@grid[rx][ry]=type

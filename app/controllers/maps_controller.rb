@@ -7,6 +7,7 @@ class MapsController < ApplicationController
   def show
     @map = Map.find(params[:id])
     @grid = MapGenerator.generateMap(@map.seed, @map.terrain)
+    @terrain_tile = Map.get_tile_name(@map.terrain)
   end
   
   # Contains a form for map creation

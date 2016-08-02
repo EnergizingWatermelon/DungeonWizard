@@ -4,14 +4,19 @@
     %h2= map.name
     %table{:class => "map"}
       %tbody{:class => "mapBody"}
-        - 32.times do |row|
+        - height = 32
+        - width = 24
+        - height.times do |row|
           %tr{:class => "mapRow"}
-            - 24.times do |column|
+            - width.times do |column|
               %td{:class => "mapCol"}
                 - case @grid[row][column]
-                  - when :passage
-                    = image_tag("tiles/cells/tileDungeon.png", size: "32x32")
                   - when :wall
-                    = image_tag("tiles/cells/tileUnplayable.png", size: "32x32")
+                    - if row < height -1 && @grid[row+1][column]== :open
+                      = image_tag(@terrain_tile, size: "32x32")
+                    - elsif column < width -1 && @grid[row][column + 1]== :open
+                      = image_tag(@terrain_tile, size: "32x32")
+                    - else
+                      = image_tag("tiles/cells/tileUnplayable.png", size: "32x32")
                   - else
                     = image_tag("tiles/cells/tilePlayable.png", size: "32x32")
