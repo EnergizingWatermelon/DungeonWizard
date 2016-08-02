@@ -1,6 +1,6 @@
 - #This file is 'app/views/encounters/_encounter.html.haml'
 %div{:class => "panel panel-default", :id => "encounterPanel"}
-  <div class = "panel-heading" id = "encounterHeading"><span class = "badge" id = "xpBadge">#{encounter.xp} XP</span></div>
+  <div class = "panel-heading" id = "encounterHeading">#{encounter.details}<span class = "badge" id = "xpBadge">#{encounter.xp} XP</span></div>
   %div{:class => ".col-sm-4  en-container"}
     - if encounter.characters.empty?
       %div{:class =>"panel-body"}

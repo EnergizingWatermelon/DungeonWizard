@@ -135,15 +135,20 @@
   %h2= map.name
   %table{:class =&gt; &quot;map&quot;}
     %tbody{:class =&gt; &quot;mapBody&quot;}
-      - 32.times do |row|
+      - height = 32
+      - width = 24
+      - height.times do |row|
         %tr{:class =&gt; &quot;mapRow&quot;}
-          - 24.times do |column|
+          - width.times do |column|
             %td{:class =&gt; &quot;mapCol&quot;}
               - case @grid[row][column]
-                - when :passage
-                  = image_tag(&quot;tiles/cells/tileDungeon.png&quot;, size: &quot;32x32&quot;)
                 - when :wall
-                  = image_tag(&quot;tiles/cells/tileUnplayable.png&quot;, size: &quot;32x32&quot;)
+                  - if row &lt; height -1 &amp;&amp; @grid[row+1][column]== :open
+                    = image_tag(@terrain_tile, size: &quot;32x32&quot;)
+                  - elsif column &lt; width -1 &amp;&amp; @grid[row][column + 1]== :open
+                    = image_tag(@terrain_tile, size: &quot;32x32&quot;)
+                  - else
+                    = image_tag(&quot;tiles/cells/tileUnplayable.png&quot;, size: &quot;32x32&quot;)
                 - else
                   = image_tag(&quot;tiles/cells/tilePlayable.png&quot;, size: &quot;32x32&quot;)</pre>
 </main>

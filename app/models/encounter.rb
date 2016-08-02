@@ -46,17 +46,21 @@ class Encounter < ActiveRecord::Base
                     24 => 1228800,
                     25 => 1638400
         }
-=begin
-        #lerp experience rewards
+
+        
         xp_amount = 0
         cr_floor = challenge_rating.to_f.floor
         cr_ceil = challenge_rating.to_f.ceil
-        if(cr_ceil <= 25 && cr_floor >= 0)
-            xp_amount = experience[cr_floor] +(experience[cr_ceil] - experience[cr_floor]) *  ((challenge_rating.to_f - cr_floor)/(cr_ceil - cr_floor))
+        if cr_floor != cr_ceil
+            #lerp experience rewards
+            xp_floor = experience[cr_floor]   
+            xp_ceil = experience[cr_ceil]
+            xp_amount = xp_floor + (xp_ceil - xp_floor) *  ((challenge_rating.to_f - cr_floor)/(cr_ceil - cr_floor))
+        else
+            xp_amount = experience[challenge_rating.to_i]
         end
+        
         return xp_amount
-=end
-        return experience[challenge_rating.to_i]
     end
     
   # Adjusts average party level based on party size, per Pathfinder's suggestion
@@ -67,12 +71,18 @@ class Encounter < ActiveRecord::Base
   # 
   # returns recommended party_level
     def self.adjust_party_level(party_level, party_size)
-        if party_size.to_i > 6
-            party_level = party_level + 1
-        elsif party_size.to_i < 4
-            party_level = party_level - 1
+        size = party_size.to_i
+        level = party_level.to_f
+        if size > 6
+            level = level + 1
+        elsif size < 4
+            if level == 1
+                level = 0.5
+            else
+                level = level - 1
+            end
         end
-        return party_level
+        return level
     end
     
     # Generates encounter appropriate characters
@@ -92,13 +102,17 @@ class Encounter < ActiveRecord::Base
             unless(climate == 'Any')
                 options = options.select { |a| a.climate == climate || a.climate == 'Any' }
             end
+            
             if options.empty?
                 return characters
+            else
+                #Add either a random monster or the most difficult one
+                options.sort{ |x,y| x.xp <=> y.xp }
+                character = [options.last, options.last, options.sample].sample
+                xp_sum += character.xp
+                characters << character
             end
-            character = options.sample
-            xp_sum += character.xp
-            characters << character
-        end 
+        end
         return characters.sort{ |x,y| x.xp <=> y.xp }
     end
     

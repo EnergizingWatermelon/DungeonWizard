@@ -64,7 +64,17 @@
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-get_tile_name">::get_tile_name</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -92,6 +102,54 @@
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-get_tile_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_tile_name</span><span
+            class="method-args">(terrain)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the file location of the appropriate terrain tile</p>
+
+<h4 id="method-c-get_tile_name-label-Attributes">Attributes<span><a href="#method-c-get_tile_name-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>terrain</code> - Terrain type</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="get_tile_name-source">
+            <pre><span class="ruby-comment"># File app/models/map.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_tile_name</span>(<span class="ruby-identifier">terrain</span>)
+    <span class="ruby-identifier">terrain_tile</span> = <span class="ruby-string">&quot;tiles/landscape/tile&quot;</span>
+    <span class="ruby-identifier">terrain_tile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">terrain</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-identifier">terrain_tile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;.png&quot;</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

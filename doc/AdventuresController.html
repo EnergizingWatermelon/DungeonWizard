@@ -141,18 +141,7 @@ is redirected to the index.</p>
     <span class="ruby-ivar">@adventure</span> = <span class="ruby-constant">Adventure</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">adventure_params</span>)
     <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">save</span>)
         <span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">map</span> = <span class="ruby-constant">Map</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">map_params</span>)
-        <span class="ruby-identifier">num_encounters</span> = <span class="ruby-value">5</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">5</span>)
-        <span class="ruby-identifier">xp</span> = <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">calculateExperienceReward</span>(<span class="ruby-identifier">adventure_params</span>[<span class="ruby-value">:cr</span>], <span class="ruby-identifier">adventure_params</span>[<span class="ruby-value">:party_size</span>])
-        <span class="ruby-identifier">num_encounters</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">encounter</span> = <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">adv_encounter_params</span>)
-            <span class="ruby-identifier">encounter</span>.<span class="ruby-identifier">xp</span> = <span class="ruby-identifier">xp</span>
-            <span class="ruby-identifier">encounter</span>.<span class="ruby-identifier">characters</span> =  <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">calculateCharacters</span>(  <span class="ruby-identifier">xp</span>, 
-                                                                    <span class="ruby-identifier">adv_encounter_params</span>[<span class="ruby-value">:climate</span>], 
-                                                                    <span class="ruby-identifier">adv_encounter_params</span>[<span class="ruby-value">:terrain</span>])
-            <span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">encounters</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">encounter</span>
-        <span class="ruby-keyword">end</span>
-
-        <span class="ruby-comment">#Adventure.calculateEncounters(@adventure, adv_encounter_params)</span>
+        <span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">encounters</span> = <span class="ruby-constant">Adventure</span>.<span class="ruby-identifier">calculateEncounters</span>(<span class="ruby-identifier">adv_encounter_params</span>)
         <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">save</span>)
             <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@adventure</span>
         <span class="ruby-keyword">else</span>
@@ -257,10 +246,11 @@ parameter</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/adventures_controller.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/controllers/adventures_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
     <span class="ruby-ivar">@adventure</span> = <span class="ruby-constant">Adventure</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
     <span class="ruby-ivar">@grid</span> = <span class="ruby-constant">MapGenerator</span>.<span class="ruby-identifier">generateMap</span>(<span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">map</span>.<span class="ruby-identifier">seed</span>, <span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">map</span>.<span class="ruby-identifier">terrain</span>)
+    <span class="ruby-ivar">@terrain_tile</span> = <span class="ruby-constant">Map</span>.<span class="ruby-identifier">get_tile_name</span>(<span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">map</span>.<span class="ruby-identifier">terrain</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

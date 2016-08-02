@@ -18,18 +18,7 @@ class AdventuresController < ApplicationController
         @adventure = Adventure.new(adventure_params)
         if (@adventure.save)
             @adventure.map = Map.new(map_params)
-            num_encounters = 5 + rand(5)
-            xp = Encounter.calculateExperienceReward(adventure_params[:cr], adventure_params[:party_size])
-            num_encounters.times do |i|
-                encounter = Encounter.new(adv_encounter_params)
-                encounter.xp = xp
-                encounter.characters =  Encounter.calculateCharacters(  xp, 
-                                                                        adv_encounter_params[:climate], 
-                                                                        adv_encounter_params[:terrain])
-                @adventure.encounters << encounter
-            end
-    
-            #Adventure.calculateEncounters(@adventure, adv_encounter_params)
+            @adventure.encounters = Adventure.calculateEncounters(adv_encounter_params)
             if(@adventure.save)
                 redirect_to @adventure
             else
@@ -44,6 +33,7 @@ class AdventuresController < ApplicationController
     def show
         @adventure = Adventure.find(params[:id])
         @grid = MapGenerator.generateMap(@adventure.map.seed, @adventure.map.terrain)
+        @terrain_tile = Map.get_tile_name(@adventure.map.terrain)
     end
     
     private

@@ -131,11 +131,11 @@
 <p>#This file is /app/views/maps/_map.html.haml</p>
 </li></ul>
 
-<p>%div{:class =&gt; “panel panel-primary”, :id =&gt; “characterPanel”}</p>
+<p>%div{:class =&gt; “panel panel-primary en-child”, :id =&gt;
+“characterPanel”}</p>
 
 <pre>%div{:class =&gt; &quot;panel-heading&quot;, :id =&gt; &quot;characterPanelHeading&quot;}= character.name
 %div{:class =&gt; &quot;.col-sm-4&quot;}
-  %h4= character.monster_type
   %table{:class =&gt; &quot;characterBody&quot;}
     %tbody
       %tr{:class =&gt; &quot;characterRow&quot;}
@@ -191,10 +191,8 @@
         %td{:class =&gt; &quot;characterCol&quot;}=character.wis
         %td{:class =&gt; &quot;characterCol&quot;}= character.cha
       %tr{:class =&gt; &quot;characterRow&quot;}
-        %th{:class =&gt; &quot;characterHeader&quot;}Organization
         %th{:class =&gt; &quot;characterHeader&quot;}Treasure
       %tr{:class =&gt; &quot;characterRow&quot;}
-        %td= character.organization
         %td= character.treasure
   %p= character.description</pre>
 </main>
