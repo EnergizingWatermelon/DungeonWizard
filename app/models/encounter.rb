@@ -102,13 +102,17 @@ class Encounter < ActiveRecord::Base
             unless(climate == 'Any')
                 options = options.select { |a| a.climate == climate || a.climate == 'Any' }
             end
+            
             if options.empty?
                 return characters
+            else
+                #Add either a random monster or the most difficult one
+                options.sort{ |x,y| x.xp <=> y.xp }
+                character = [options.last, options.last, options.sample].sample
+                xp_sum += character.xp
+                characters << character
             end
-            character = options.sample
-            xp_sum += character.xp
-            characters << character
-        end 
+        end
         return characters.sort{ |x,y| x.xp <=> y.xp }
     end
     
