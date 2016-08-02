@@ -139,10 +139,20 @@ Then (/^(?:|I )should see an Encounter$/) do
 end
 
 Then (/^(?:|I )should see a CR of "([^"]*)"$/) do |cr|
+  @bool = false
   if page.respond_to? :should
-	  page.first('.badge').should have_text(cr)
+	  page.all('.badge', :minimum => 1).each do |element|
+	    if element.text == cr
+	      element.should have_text(cr)
+	      @bool = true
+	      break
+	    end
+	  end
+	  if !@bool
+	    element.should have_text(cr)
+	  end
   else
-    assert page.first('.badge').should have_text(cr)
+    assert page.all('.badge', :minimum => 1).should have_text(cr)
   end
 end
 
