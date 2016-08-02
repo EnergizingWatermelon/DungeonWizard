@@ -18,27 +18,7 @@ class AdventuresController < ApplicationController
         @adventure = Adventure.new(adventure_params)
         if (@adventure.save)
             @adventure.map = Map.new(map_params)
-            num_encounters = 4 + rand(5)
-            num_encounters.times do |i|
-                encounter = Encounter.new(adv_encounter_params)
-                xp = Encounter.calculateExperienceReward(adventure_params[:cr], adventure_params[:party_size])
-                encounter.xp = xp
-                encounter.characters =  Encounter.calculateCharacters(  xp, 
-                                                                        adv_encounter_params[:climate], 
-                                                                        adv_encounter_params[:terrain])
-                @adventure.encounters << encounter
-            end
-            
-            #Add a boss fight
-            encounter = Encounter.new(adv_boss_params)
-            xp = Encounter.calculateExperienceReward(adv_boss_params[:cr], adv_boss_params[:party_size])
-            encounter.xp = xp
-            encounter.details = "Boss Encounter"
-            encounter.characters =  Encounter.calculateCharacters(  xp, 
-                                                                    adv_boss_params[:climate], 
-                                                                    adv_boss_params[:terrain])
-            @adventure.encounters << encounter
-            
+            @adventure.encounters = Adventure.calculateEncounters(adv_encounter_params)
             if(@adventure.save)
                 redirect_to @adventure
             else
@@ -66,13 +46,6 @@ class AdventuresController < ApplicationController
         enc_params[:climate] = map_parms[:climate]
         enc_params[:terrain] = map_parms[:terrain]
         return enc_params
-    end
-    
-    private
-    def adv_boss_params
-        boss_params = adv_encounter_params
-        boss_params[:cr] = (boss_params[:cr].to_i + 1).to_s
-        return boss_params
     end
     
 end
