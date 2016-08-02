@@ -47,14 +47,14 @@ class Encounter < ActiveRecord::Base
                     25 => 1638400
         }
 
-        #lerp experience rewards
+        
         xp_amount = 0
         cr_floor = challenge_rating.to_f.floor
-        xp_floor = experience[cr_floor]
         cr_ceil = challenge_rating.to_f.ceil
-        xp_ceil = experience[cr_ceil]
         if cr_floor != cr_ceil
-            
+            #lerp experience rewards
+            xp_floor = experience[cr_floor]   
+            xp_ceil = experience[cr_ceil]
             xp_amount = xp_floor + (xp_ceil - xp_floor) *  ((challenge_rating.to_f - cr_floor)/(cr_ceil - cr_floor))
         else
             xp_amount = experience[challenge_rating.to_i]
