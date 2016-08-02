@@ -140,9 +140,9 @@ end
 
 Then (/^(?:|I )should see a CR of "([^"]*)"$/) do |cr|
   if page.respond_to? :should
-	  page.find_by_id('xpBadge').should have_text(cr)
+	  page.first('.badge').should have_text(cr)
   else
-    assert page.find_by_id('xpBadge').should have_text(cr)
+    assert page.first('.badge').should have_text(cr)
   end
 end
 
