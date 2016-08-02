@@ -16,12 +16,15 @@ class Adventure < ActiveRecord::Base
         cr = adventure_params[:cr].to_i
         difficulty_modifier = [-1, -1, 0, 0, 0]
         num_encounters.times do |i|
-            adventure_params[:cr] = cr + difficulty_modifier.sample
+            if(cr > 0)
+                adventure_params[:cr] = cr + difficulty_modifier.sample
             encounters << generateEncounter(adventure_params)
         end
         
         #Add a boss fight
-        adventure_params[:cr] = cr + 1
+        if cr < 25
+            adventure_params[:cr] = cr + 1
+        end
         adventure_params[:details] = "BOSS"
         encounters << generateEncounter(adventure_params)
         
