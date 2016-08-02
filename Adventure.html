@@ -64,7 +64,19 @@
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-calculateEncounters">::calculateEncounters</a>
+    
+    <li ><a href="#method-c-generateEncounter">::generateEncounter</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -93,6 +105,118 @@ encounters</p>
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-calculateEncounters" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">calculateEncounters</span><span
+            class="method-args">(adventure_params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generates a series of appropriate Encounters, culminating with a Boss <a
+href="Encounter.html">Encounter</a></p>
+
+<h4 id="method-c-calculateEncounters-label-Attributes">Attributes<span><a href="#method-c-calculateEncounters-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>adventure_params</code> - parameters required for encounter
+generation</p>
+</li></ul>
+
+<p>Returns an array of Encounters for the <a
+href="Adventure.html">Adventure</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="calculateEncounters-source">
+            <pre><span class="ruby-comment"># File app/models/adventure.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">calculateEncounters</span>(<span class="ruby-identifier">adventure_params</span>)
+    <span class="ruby-identifier">encounters</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">num_encounters</span> = <span class="ruby-value">4</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">5</span>)
+    <span class="ruby-identifier">cr</span> = <span class="ruby-identifier">adventure_params</span>[<span class="ruby-value">:cr</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-identifier">difficulty_modifier</span> = [<span class="ruby-value">-1</span>, <span class="ruby-value">-1</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>]
+    <span class="ruby-identifier">num_encounters</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">adventure_params</span>[<span class="ruby-value">:cr</span>] = <span class="ruby-identifier">cr</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">difficulty_modifier</span>.<span class="ruby-identifier">sample</span>
+        <span class="ruby-identifier">encounters</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">generateEncounter</span>(<span class="ruby-identifier">adventure_params</span>)
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-comment">#Add a boss fight</span>
+    <span class="ruby-identifier">adventure_params</span>[<span class="ruby-value">:cr</span>] = <span class="ruby-identifier">cr</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">adventure_params</span>[<span class="ruby-value">:details</span>] = <span class="ruby-string">&quot;BOSS&quot;</span>
+    <span class="ruby-identifier">encounters</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">generateEncounter</span>(<span class="ruby-identifier">adventure_params</span>)
+    
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">encounters</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-generateEncounter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generateEncounter</span><span
+            class="method-args">(enc_params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generates a single <a href="Encounter.html">Encounter</a></p>
+
+<h4 id="method-c-generateEncounter-label-Attributes">Attributes<span><a href="#method-c-generateEncounter-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>enc_params</code> - parameters required for encounter generation</p>
+</li></ul>
+
+<p>Returns a single <a href="Encounter.html">Encounter</a> for the <a
+href="Adventure.html">Adventure</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="generateEncounter-source">
+            <pre><span class="ruby-comment"># File app/models/adventure.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generateEncounter</span>(<span class="ruby-identifier">enc_params</span>)
+    <span class="ruby-identifier">encounter</span> = <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">enc_params</span>)
+    <span class="ruby-identifier">xp</span> = <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">calculateExperienceReward</span>(<span class="ruby-identifier">enc_params</span>[<span class="ruby-value">:cr</span>], <span class="ruby-identifier">enc_params</span>[<span class="ruby-value">:party_size</span>])
+    <span class="ruby-identifier">encounter</span>.<span class="ruby-identifier">xp</span> = <span class="ruby-identifier">xp</span>
+    <span class="ruby-identifier">encounter</span>.<span class="ruby-identifier">characters</span> =  <span class="ruby-constant">Encounter</span>.<span class="ruby-identifier">calculateCharacters</span>(  <span class="ruby-identifier">xp</span>, 
+                                                            <span class="ruby-identifier">enc_params</span>[<span class="ruby-value">:climate</span>], 
+                                                            <span class="ruby-identifier">enc_params</span>[<span class="ruby-value">:terrain</span>])
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">encounter</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 
