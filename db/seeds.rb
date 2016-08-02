@@ -36,6 +36,7 @@ monsters = [{:name => 'Rattata', :xp => '20', :cr => '0.05', :initiative => '0',
             {:name => 'Dark Stalker', :xp => '1200', :cr => '4', :climate => 'Temperate', :terrain => 'Underground'},
             {:name => 'Dark Stalker', :xp => '1200', :cr => '4', :climate => 'Warm', :terrain => 'Underground'},
             {:name => 'Giant Filled Lizard', :xp => '1600', :cr => '5', :climate => 'Warm', :terrain => 'Forest'},
+            {:name => 'Jabberwock', :xp => '819200', :cr => '23', :initiative => '5', :hp => '455', :ac => '40', :ac_touch => '14', :ac_flat => '34', :fort_save => '26', :ref_save => '20', :will_save => '24', :str => '37', :dex => '20', :con => '33', :int => '12', :wis => '29', :cha => '26', :monster_type => 'Dragon', :alignment => 'CE', :organization => 'solitary', :climate => 'Any', :terrain => 'Forest'},
   	 ]
 
 monsters.each do |monster|

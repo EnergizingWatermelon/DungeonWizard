@@ -18,6 +18,7 @@ class Adventure < ActiveRecord::Base
         num_encounters.times do |i|
             if(cr > 0)
                 adventure_params[:cr] = cr + difficulty_modifier.sample
+            end
             encounters << generateEncounter(adventure_params)
         end
         
