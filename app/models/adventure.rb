@@ -4,6 +4,12 @@ class Adventure < ActiveRecord::Base
     has_one :map
     has_many :encounters
     
+    # Generates a series of appropriate Encounters, culminating with a Boss Encounter
+    #
+    # ==== Attributes
+    # * +adventure_params+ - parameters required for encounter generation
+    #
+    # Returns an array of Encounters for the Adventure
     def self.calculateEncounters(adventure_params)
         encounters = Array.new
         num_encounters = 4 + rand(5)
@@ -22,6 +28,12 @@ class Adventure < ActiveRecord::Base
         return encounters
     end
     
+    # Generates a single Encounter
+    #
+    # ==== Attributes
+    # * +enc_params+ - parameters required for encounter generation
+    #
+    # Returns a single Encounter for the Adventure
     def self.generateEncounter(enc_params)
         encounter = Encounter.new(enc_params)
         xp = Encounter.calculateExperienceReward(enc_params[:cr], enc_params[:party_size])
