@@ -193,14 +193,20 @@ suggestion</p>
 
           
           <div class="method-source-code" id="adjust_party_level-source">
-            <pre><span class="ruby-comment"># File app/models/encounter.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/models/encounter.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">adjust_party_level</span>(<span class="ruby-identifier">party_level</span>, <span class="ruby-identifier">party_size</span>)
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">party_size</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">6</span>
-        <span class="ruby-identifier">party_level</span> = <span class="ruby-identifier">party_level</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
-    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">party_size</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
-        <span class="ruby-identifier">party_level</span> = <span class="ruby-identifier">party_level</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">size</span> = <span class="ruby-identifier">party_size</span>.<span class="ruby-identifier">to_i</span>
+    <span class="ruby-identifier">level</span> = <span class="ruby-identifier">party_level</span>.<span class="ruby-identifier">to_f</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">6</span>
+        <span class="ruby-identifier">level</span> = <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+            <span class="ruby-identifier">level</span> = <span class="ruby-value">0.5</span>
+        <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">level</span> = <span class="ruby-identifier">level</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">party_level</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">level</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -243,7 +249,7 @@ href="Encounter.html">Encounter</a></p>
 
           
           <div class="method-source-code" id="calculateCharacters-source">
-            <pre><span class="ruby-comment"># File app/models/encounter.rb, line 86</span>
+            <pre><span class="ruby-comment"># File app/models/encounter.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">calculateCharacters</span>(<span class="ruby-identifier">xp_total</span>, <span class="ruby-identifier">climate</span>, <span class="ruby-identifier">terrain</span>)
     <span class="ruby-identifier">xp_sum</span> = <span class="ruby-value">0</span>
     <span class="ruby-identifier">characters</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
@@ -298,44 +304,50 @@ for</p>
           
           <div class="method-source-code" id="experience_reward-source">
             <pre><span class="ruby-comment"># File app/models/encounter.rb, line 21</span>
-    <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">experience_reward</span>(<span class="ruby-identifier">challenge_rating</span>)
-        <span class="ruby-identifier">experience</span>={<span class="ruby-value">0</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
-                    <span class="ruby-value">1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">400</span>,
-                    <span class="ruby-value">2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">600</span>,
-                    <span class="ruby-value">3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">800</span>,
-                    <span class="ruby-value">4</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1200</span>,
-                    <span class="ruby-value">5</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1600</span>,
-                    <span class="ruby-value">6</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2400</span>,
-                    <span class="ruby-value">7</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3200</span>,
-                    <span class="ruby-value">8</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">4800</span>,
-                    <span class="ruby-value">9</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">6400</span>,
-                    <span class="ruby-value">10</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">9600</span>,
-                    <span class="ruby-value">11</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12800</span>,
-                    <span class="ruby-value">12</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">19200</span>,
-                    <span class="ruby-value">13</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">25600</span>,
-                    <span class="ruby-value">14</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">38400</span>,
-                    <span class="ruby-value">15</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">51200</span>,
-                    <span class="ruby-value">16</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">76800</span>,
-                    <span class="ruby-value">17</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">102400</span>,
-                    <span class="ruby-value">18</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">153600</span>,
-                    <span class="ruby-value">19</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">204800</span>,
-                    <span class="ruby-value">20</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">307200</span>,
-                    <span class="ruby-value">21</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">409600</span>,
-                    <span class="ruby-value">22</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">614400</span>,
-                    <span class="ruby-value">23</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">819200</span>,
-                    <span class="ruby-value">24</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1228800</span>,
-                    <span class="ruby-value">25</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1638400</span>
-        }
-<span class="ruby-comment">        #lerp experience rewards
-        xp_amount = 0
-        cr_floor = challenge_rating.to_f.floor
-        cr_ceil = challenge_rating.to_f.ceil
-        if(cr_ceil &lt;= 25 &amp;&amp; cr_floor &gt;= 0)
-            xp_amount = experience[cr_floor] +(experience[cr_ceil] - experience[cr_floor]) *  ((challenge_rating.to_f - cr_floor)/(cr_ceil - cr_floor))
-        end
-        return xp_amount
-</span>        <span class="ruby-keyword">return</span> <span class="ruby-identifier">experience</span>[<span class="ruby-identifier">challenge_rating</span>.<span class="ruby-identifier">to_i</span>]
-    <span class="ruby-keyword">end</span></pre>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">experience_reward</span>(<span class="ruby-identifier">challenge_rating</span>)
+    <span class="ruby-identifier">experience</span>={<span class="ruby-value">0</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+                <span class="ruby-value">1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">400</span>,
+                <span class="ruby-value">2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">600</span>,
+                <span class="ruby-value">3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">800</span>,
+                <span class="ruby-value">4</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1200</span>,
+                <span class="ruby-value">5</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1600</span>,
+                <span class="ruby-value">6</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2400</span>,
+                <span class="ruby-value">7</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3200</span>,
+                <span class="ruby-value">8</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">4800</span>,
+                <span class="ruby-value">9</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">6400</span>,
+                <span class="ruby-value">10</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">9600</span>,
+                <span class="ruby-value">11</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12800</span>,
+                <span class="ruby-value">12</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">19200</span>,
+                <span class="ruby-value">13</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">25600</span>,
+                <span class="ruby-value">14</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">38400</span>,
+                <span class="ruby-value">15</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">51200</span>,
+                <span class="ruby-value">16</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">76800</span>,
+                <span class="ruby-value">17</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">102400</span>,
+                <span class="ruby-value">18</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">153600</span>,
+                <span class="ruby-value">19</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">204800</span>,
+                <span class="ruby-value">20</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">307200</span>,
+                <span class="ruby-value">21</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">409600</span>,
+                <span class="ruby-value">22</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">614400</span>,
+                <span class="ruby-value">23</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">819200</span>,
+                <span class="ruby-value">24</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1228800</span>,
+                <span class="ruby-value">25</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1638400</span>
+    }
+
+    
+    <span class="ruby-identifier">xp_amount</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">cr_floor</span> = <span class="ruby-identifier">challenge_rating</span>.<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">floor</span>
+    <span class="ruby-identifier">cr_ceil</span> = <span class="ruby-identifier">challenge_rating</span>.<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">ceil</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">cr_floor</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">cr_ceil</span>
+        <span class="ruby-comment">#lerp experience rewards</span>
+        <span class="ruby-identifier">xp_floor</span> = <span class="ruby-identifier">experience</span>[<span class="ruby-identifier">cr_floor</span>]   
+        <span class="ruby-identifier">xp_ceil</span> = <span class="ruby-identifier">experience</span>[<span class="ruby-identifier">cr_ceil</span>]
+        <span class="ruby-identifier">xp_amount</span> = <span class="ruby-identifier">xp_floor</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">xp_ceil</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">xp_floor</span>) <span class="ruby-operator">*</span>  ((<span class="ruby-identifier">challenge_rating</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">cr_floor</span>)<span class="ruby-operator">/</span>(<span class="ruby-identifier">cr_ceil</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">cr_floor</span>))
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">xp_amount</span> = <span class="ruby-identifier">experience</span>[<span class="ruby-identifier">challenge_rating</span>.<span class="ruby-identifier">to_i</span>]
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">xp_amount</span>
+<span class="ruby-keyword">end</span></pre>
           </div>
           
         </div>

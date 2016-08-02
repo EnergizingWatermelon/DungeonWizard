@@ -261,6 +261,7 @@ parameter</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
     <span class="ruby-ivar">@adventure</span> = <span class="ruby-constant">Adventure</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
     <span class="ruby-ivar">@grid</span> = <span class="ruby-constant">MapGenerator</span>.<span class="ruby-identifier">generateMap</span>(<span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">map</span>.<span class="ruby-identifier">seed</span>, <span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">map</span>.<span class="ruby-identifier">terrain</span>)
+    <span class="ruby-ivar">@terrain_tile</span> = <span class="ruby-constant">Map</span>.<span class="ruby-identifier">get_tile_name</span>(<span class="ruby-ivar">@adventure</span>.<span class="ruby-identifier">map</span>.<span class="ruby-identifier">terrain</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -136,7 +136,7 @@ save, the user is redirected to the index</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@map</span> = <span class="ruby-constant">Map</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">map_params</span>)
     <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@map</span>.<span class="ruby-identifier">save</span>)
@@ -174,7 +174,7 @@ save, the user is redirected to the index</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@map</span> = <span class="ruby-constant">Map</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@map</span>.<span class="ruby-identifier">destroy</span>
@@ -209,7 +209,7 @@ save, the user is redirected to the index</p>
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -241,7 +241,7 @@ save, the user is redirected to the index</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/controllers/maps_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -277,6 +277,7 @@ save, the user is redirected to the index</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@map</span> = <span class="ruby-constant">Map</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@grid</span> = <span class="ruby-constant">MapGenerator</span>.<span class="ruby-identifier">generateMap</span>(<span class="ruby-ivar">@map</span>.<span class="ruby-identifier">seed</span>, <span class="ruby-ivar">@map</span>.<span class="ruby-identifier">terrain</span>)
+  <span class="ruby-ivar">@terrain_tile</span> = <span class="ruby-constant">Map</span>.<span class="ruby-identifier">get_tile_name</span>(<span class="ruby-ivar">@map</span>.<span class="ruby-identifier">terrain</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
