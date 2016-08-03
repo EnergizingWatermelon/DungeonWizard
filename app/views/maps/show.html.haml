@@ -1,4 +1,9 @@
 -# This file is app/views/maps/show.html.haml
 %html  
   =render 'nav'
+  %ul#details
+    %li= @map.name
+    %li= @map.climate
+    %li= @map.terrain
+    %li= @map.seed
   =render @map

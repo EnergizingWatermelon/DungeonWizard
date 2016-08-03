@@ -1,3 +1,11 @@
+-# This file is app/views/encounters/show.html.haml
 %html
   =render 'nav'
+  %ul#details
+    %li= @encounter.details
+    %li= @encounter.party_size
+    %li= @encounter.cr
+    %li= @encounter.xp
+    %li= @encounter.climate
+    %li= @encounter.terrain
   =render @encounter
