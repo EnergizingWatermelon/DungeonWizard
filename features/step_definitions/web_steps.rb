@@ -18,6 +18,9 @@
 # * http://elabs.se/blog/15-you-re-cuking-it-wrong
 #
 
+#help from:
+#https://stackoverflow.com/questions/4812606/how-do-i-find-an-image-on-a-page-with-cucumber-capybara-in-rails-3
+#
 
 require 'uri'
 require 'cgi'
@@ -168,14 +171,15 @@ end
 
 #To do: create a step definition that looks for creatures of a specified terrain type
 Then (/^(?:|I )should see a "([^"]*)" terrain creature$/) do |terrain|
-  ##if page.respond_to? :should
-	##  page.find_by_id('xpBadge').should have_text(cr)
-  ##else
-  ##  assert page.find_by_id('xpBadge').should have_text(cr)
-  ##end
+  @monsterType = 'Kobold'
+  if page.respond_to? :should
+      page.should have_text('Kobold')##"div[text$='#{@monsterType}']") ##have_text(@monsterType)
+  else
+    assert page.should have_selector("div[class$='panel-heading']").should have_text(@monsterType)
+  end
 end
 
-#To do: create a step definition that looks for a map of a specified terrain type
+#looks for a map of a specified terrain type
 Then (/^(?:|I )should see a "([^"]*)" terrain map/) do |terrain|
   @imageAlt = 'Tile' + terrain
   if page.respond_to? :should
@@ -185,7 +189,7 @@ Then (/^(?:|I )should see a "([^"]*)" terrain map/) do |terrain|
   end
 end
 
-#To do: create a step definition that looks for creatures of a specified climate type
+#looks for creatures of a specified climate type
 Then (/^(?:|I )should see a "([^"]*)" climate creature$/) do |climate|
   ##if page.respond_to? :should
 	##  page.find_by_id('xpBadge').should have_text(cr)
@@ -194,13 +198,13 @@ Then (/^(?:|I )should see a "([^"]*)" climate creature$/) do |climate|
   ##end
 end
 
-#To do: create a step definition that looks for a map of a specified climate type
+#looks for a map of a specified climate type
 Then (/^(?:|I )should see a "([^"]*)" climate map/) do |climate|
-  ##if page.respond_to? :should
-	##  page.find_by_id('xpBadge').should have_text(cr)
-  ##else
-  ##  assert page.find_by_id('xpBadge').should have_text(cr)
-  ##end
+  if page.respond_to? :should
+      page.should have_text(climate)
+  else
+    assert page.has_text?(climate)
+  end
 end
 
 Then (/^(?:|I )should not see "([^"]*)"$/) do |text|
