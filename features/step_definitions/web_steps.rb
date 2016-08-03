@@ -177,11 +177,12 @@ end
 
 #To do: create a step definition that looks for a map of a specified terrain type
 Then (/^(?:|I )should see a "([^"]*)" terrain map/) do |terrain|
-  ##if page.respond_to? :should
-	##  page.find_by_id('xpBadge').should have_text(cr)
-  ##else
-  ##  assert page.find_by_id('xpBadge').should have_text(cr)
-  ##end
+  @imageAlt = 'Tile' + terrain
+  if page.respond_to? :should
+      page.should have_selector("img[alt$='#{@imageAlt}']")
+  else
+    assert page.has_selector?("img[alt$='#{@imageAlt}']")
+  end
 end
 
 #To do: create a step definition that looks for creatures of a specified climate type
