@@ -111,3 +111,7 @@ p {
     flex: none 1 auto;
     margin: 1em;
 }
+
+#details {
+    visibility: collapse;
+}
