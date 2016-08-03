@@ -171,11 +171,16 @@ end
 
 #To do: create a step definition that looks for creatures of a specified terrain type
 Then (/^(?:|I )should see a "([^"]*)" terrain creature$/) do |terrain|
-  @monsterType = 'Kobold'
+#  @monsterType = 'Kobold'
+#  if page.respond_to? :should
+#      page.should have_text('Kobold')##"div[text$='#{@monsterType}']") ##have_text(@monsterType)
+#  else
+#    assert page.should have_selector("div[class$='panel-heading']").should have_text(@monsterType)
+#  end
   if page.respond_to? :should
-      page.should have_text('Kobold')##"div[text$='#{@monsterType}']") ##have_text(@monsterType)
+    page.should have_text("#{terrain}")
   else
-    assert page.should have_selector("div[class$='panel-heading']").should have_text(@monsterType)
+    assert page.should have_text("#{terrain}")
   end
 end
 
@@ -196,6 +201,11 @@ Then (/^(?:|I )should see a "([^"]*)" climate creature$/) do |climate|
   ##else
   ##  assert page.find_by_id('xpBadge').should have_text(cr)
   ##end
+  if page.respond_to? :should
+    page.should have_text("#{climate}")
+  else
+    assert page.should have_text("#{climate}")
+  end
 end
 
 #looks for a map of a specified climate type
