@@ -4,7 +4,7 @@
   %div{:class => ".col-sm-4  en-container"}
     - if encounter.characters.empty?
       %div{:class =>"panel-body"}
-        No characters were found that meet your requirements.
+      GM liberty encounter; Either ignore this encounter or setup a trap.
     -else
       - encounter.characters.each do |character|
         - unless character.nil?

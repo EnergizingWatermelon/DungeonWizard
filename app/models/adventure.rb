@@ -26,7 +26,7 @@ class Adventure < ActiveRecord::Base
         if cr < 25
             adventure_params[:cr] = cr + 1
         end
-        adventure_params[:details] = "BOSS"
+        adventure_params[:details] = "Boss Fight "
         encounters << generateEncounter(adventure_params)
         
         return encounters

@@ -47,17 +47,17 @@ class Encounter < ActiveRecord::Base
                     25 => 1638400
         }
 
-        
         xp_amount = 0
         cr_floor = challenge_rating.to_f.floor
         cr_ceil = challenge_rating.to_f.ceil
+        
         if cr_floor != cr_ceil
             #lerp experience rewards
-            xp_floor = experience[cr_floor]   
+            xp_floor = experience[cr_floor]
             xp_ceil = experience[cr_ceil]
             xp_amount = xp_floor + (xp_ceil - xp_floor) *  ((challenge_rating.to_f - cr_floor)/(cr_ceil - cr_floor))
         else
-            xp_amount = experience[challenge_rating.to_i]
+            xp_amount = experience[cr_floor]
         end
         
         return xp_amount
@@ -82,7 +82,8 @@ class Encounter < ActiveRecord::Base
                 level = level - 1
             end
         end
-        return level
+        challenge_rating = level
+        return challenge_rating
     end
     
     # Generates encounter appropriate characters
