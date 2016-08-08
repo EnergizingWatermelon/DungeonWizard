@@ -112,9 +112,59 @@ class Encounter < ActiveRecord::Base
                 character = [options.last, options.last, options.sample].sample
                 xp_sum += character.xp
                 characters << character
+               
+
+                #Add pair,gang,pack,nest support
+                nest_odds = 0.1
+                nest_size = rand(17..30)
+                nest_xp = character.xp * nest_size
+                
+                pack_odds = 0.2
+                pack_size = rand(10..16)
+                pack_xp = character.xp * pack_size
+                
+                gang_odds = 0.3
+                gang_size = rand(3..9)
+                gang_xp = character.xp * gang_size
+                
+                pair_odds = 1.0
+                if character.organization.include? "solitary"
+                    pair_odds = 0.5
+                end
+                
+                odds = rand
+                
+                if odds <= nest_odds and
+                nest_xp + xp_sum <= xp_total and 
+                ( character.organization.include? "nest" or character.organization.include? "tribe" or character.organization.include? "clan" )
+                    nest_size.times do
+                       characters << character
+                    end
+                    xp_sum += nest_xp
+                elsif odds <= pack_odds and pack_xp + xp_sum <= xp_total and 
+                (character.organization.include? "pack" or character.organization.include? "warband")
+                    xp_sum += pack_xp
+                    pack_size.times do
+                       characters << character
+                    end
+                elsif odds <= gang_odds and
+                gang_xp + xp_sum <= xp_total and
+                character.organization.include? "gang"
+                    xp_sum += gang_xp
+                    gang_size.times do
+                        characters << character
+                    end
+                elsif odds <= pair_odds and
+                character.organization.include? "pair"  and 
+                character.xp + xp_sum <= xp_total
+                    characters << character
+                    xp_sum += character.xp
+                end
+
             end
         end
-        return characters.sort{ |x,y| x.xp <=> y.xp }
+      
+        return characters
     end
     
 end

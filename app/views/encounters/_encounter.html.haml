@@ -6,6 +6,7 @@
       %div{:class =>"panel-body"}
       GM liberty encounter; Either ignore this encounter or setup a trap.
     -else
-      - encounter.characters.each do |character|
+      - characters = encounter.characters.sort{ |x,y| x.xp <=> y.xp }
+      - characters.each do |character|
         - unless character.nil?
           = render character

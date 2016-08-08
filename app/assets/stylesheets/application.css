@@ -63,6 +63,7 @@ tr:hover {background-color: #fff2cc;}
      border-right: 1px solid #663300;
      border-left: 1px solid #663300;
      border-top: 1px solid #663300;
+     text-align: center;
 }
 
 .characterRow {
@@ -99,6 +100,7 @@ p {
 
 #characterPanel {
     width: 256px;
+    text-align: center;
 }
 
 .en-container{
