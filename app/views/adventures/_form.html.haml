@@ -13,11 +13,11 @@
         %div{:class => "form-group"}
           %label{:for => "PlayerCount"}Player Count
           %input{:type => "number", :class => "form-control", :id => "PlayerCount",
-                 :name => "adventure[party_size]", :value => "4", :min => "1"}
+                 :name => "adventure[party_size]", :value => "4", :min => "1", :max => "8"}
         %div{:class => "form-group"}
           %label{:for => "PlayerLevel"}Average Player Level
           %input{:type => "number", :class => "form-control", :id => "PlayerLevel",
-                 :name => "adventure[cr]", :value => "1", :min => "1"}
+                 :name => "adventure[cr]", :value => "1", :min => "1", :max => "25"}
       %div{:class => "col-md-6"}
         %div{:class => "form-group"}
           = label :map, :name, 'Location Name'
