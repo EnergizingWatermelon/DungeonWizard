@@ -17,6 +17,6 @@
                     - elsif column < width -1 && @grid[row][column + 1]== :open
                       = image_tag(@terrain_tile, size: "32x32")
                     - else
-                      = image_tag("tiles/cells/tileUnplayable.png", size: "32x32")
+                      = image_tag(@unplayable_tile, size: "32x32")
                   - else
                     = image_tag("tiles/cells/tilePlayable.png", size: "32x32")

@@ -11,4 +11,16 @@ class Map < ActiveRecord::Base
         terrain_tile << terrain.to_s
         terrain_tile << ".png" 
     end
+    
+    # Returns the file location of the appropriate unplayable tile
+    #
+    # ==== Attributes
+    # * +climate+ - Climate type
+    def self.get_unplayable_name(climate)
+       if(climate == "Warm" or climate == "Cold")
+           return "tiles/cells/tileUnplayable2.png"
+       else
+           return "tiles/cells/tileUnplayable.png"
+       end
+    end
 end

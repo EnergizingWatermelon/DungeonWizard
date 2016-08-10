@@ -8,6 +8,7 @@ class MapsController < ApplicationController
     @map = Map.find(params[:id])
     @grid = MapGenerator.generateMap(@map.seed, @map.terrain)
     @terrain_tile = Map.get_tile_name(@map.terrain)
+    @unplayable_tile = Map.get_unplayable_name(@map.climate)
   end
   
   # Contains a form for map creation
