@@ -14,7 +14,11 @@ module MapGenerator
 		case terrain
 			when 'Cave'
 				return MapGenerator.generateCave(32,24)
+			when 'Underground'
+				return MapGenerator.generateCave(32,24)
 			when 'Dungeon'
+				return MapGenerator.generateDungeon(32,24)
+			when 'Ruins'
 				return MapGenerator.generateDungeon(32,24)
 			else
 				return MapGenerator.generateNatural(32,24)
@@ -38,7 +42,7 @@ module MapGenerator
 		chance_to_change = 0.25
 
 		reps.times do
-			grid[cx][cy] = :room
+			grid[cx][cy] = :open
 			if(rand() > chance_to_change)
 				cdir = rand(0..3)			
 			end
