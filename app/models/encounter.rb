@@ -113,7 +113,8 @@ class Encounter < ActiveRecord::Base
                 xp_sum += character.xp
                 characters << character
                
-
+               #skip organizations if there's no info
+                next if character.organization.nil?
                 #Add pair,gang,pack,nest support
                 nest_odds = 0.1
                 nest_size = rand(17..30)
