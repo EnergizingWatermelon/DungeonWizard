@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160708023924) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "abilities", force: :cascade do |t|
     t.string   "name"
     t.string   "category"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160708023924) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "abilities", ["character_id"], name: "index_abilities_on_character_id"
+  add_index "abilities", ["character_id"], name: "index_abilities_on_character_id", using: :btree
 
   create_table "adventures", force: :cascade do |t|
     t.string   "title"
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 20160708023924) do
     t.integer "encounter_id"
   end
 
-  add_index "characters_encounters", ["character_id"], name: "index_characters_encounters_on_character_id"
-  add_index "characters_encounters", ["encounter_id"], name: "index_characters_encounters_on_encounter_id"
+  add_index "characters_encounters", ["character_id"], name: "index_characters_encounters_on_character_id", using: :btree
+  add_index "characters_encounters", ["encounter_id"], name: "index_characters_encounters_on_encounter_id", using: :btree
 
   create_table "encounters", force: :cascade do |t|
     t.text     "details"
@@ -81,7 +84,7 @@ ActiveRecord::Schema.define(version: 20160708023924) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "encounters", ["adventure_id"], name: "index_encounters_on_adventure_id"
+  add_index "encounters", ["adventure_id"], name: "index_encounters_on_adventure_id", using: :btree
 
   create_table "maps", force: :cascade do |t|
     t.string  "name"
@@ -91,6 +94,9 @@ ActiveRecord::Schema.define(version: 20160708023924) do
     t.integer "adventure_id"
   end
 
-  add_index "maps", ["adventure_id"], name: "index_maps_on_adventure_id"
+  add_index "maps", ["adventure_id"], name: "index_maps_on_adventure_id", using: :btree
 
+  add_foreign_key "abilities", "characters"
+  add_foreign_key "encounters", "adventures"
+  add_foreign_key "maps", "adventures"
 end

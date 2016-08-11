@@ -55,7 +55,7 @@ class Encounter < ActiveRecord::Base
             #lerp experience rewards
             xp_floor = experience[cr_floor]
             xp_ceil = experience[cr_ceil]
-            xp_amount = xp_floor + (xp_ceil - xp_floor) *  ((challenge_rating.to_f - cr_floor)/(cr_ceil - cr_floor))
+            xp_amount = xp_floor + (xp_ceil - xp_floor) *  ((challenge_rating.to_f - cr_floor))
         else
             xp_amount = experience[cr_floor]
         end
@@ -99,7 +99,7 @@ class Encounter < ActiveRecord::Base
         characters = Array.new
         #Gather a collection of characters that can spawn in this area and whose CR will not exceed the total value
         while xp_sum < xp_total
-                options = Character.where("xp <= ? AND terrain == ?", xp_total - xp_sum, terrain)
+                options = Character.where("xp <= ? AND terrain = ?", xp_total - xp_sum, terrain)
             unless(climate == 'Any')
                 options = options.select { |a| a.climate == climate || a.climate == 'Any' }
             end
